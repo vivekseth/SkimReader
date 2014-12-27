@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6EB6917825FFEA75D8B627B2"
+               BlueprintIdentifier = "2A64F0A179C3D7882E8ED0B7"
                BuildableName = "libPods-SkimReader.a"
                BlueprintName = "Pods-SkimReader"
                ReferencedContainer = "container:Pods.xcodeproj">
