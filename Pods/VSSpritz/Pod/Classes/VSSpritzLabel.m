@@ -167,7 +167,7 @@
 	[[NSMutableAttributedString alloc] initWithString:word
 										   attributes:@{
 														NSFontAttributeName: self.wordLabel.font,
-														NSForegroundColorAttributeName : [UIColor lightGrayColor]
+														NSForegroundColorAttributeName : [UIColor colorWithWhite:0.55 alpha:1.0]
 														}];
 
 	NSRange pivotCharRange = NSMakeRange(pivotCharacterIndex, 1);

@@ -98,8 +98,13 @@
 {
     NSError *error = nil;
     NSURL *containerURL = [[baseURL URLByAppendingPathComponent:@"META-INF"] URLByAppendingPathComponent:@"container.xml"];
-    
-    NSString *content = [NSString stringWithContentsOfURL:containerURL encoding:NSUTF8StringEncoding error:&error];
+	NSString *content = [NSString stringWithContentsOfURL:containerURL encoding:NSUTF8StringEncoding error:&error];
+
+	if (content == nil) {
+		NSData *data = [NSData dataWithContentsOfFile:[baseURL.path stringByAppendingPathComponent:@"META-INF/container.xml"]];
+		content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	}
+
     DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
     DDXMLElement *root  = [document rootElement];
     
