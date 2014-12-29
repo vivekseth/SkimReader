@@ -71,7 +71,7 @@
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     
-                    [self performSelector:@selector(doneExtracting:) withObject:@(didSucceed) afterDelay:0.1f];
+                    [self performSelector:@selector(doneExtracting:) withObject:@(didSucceed) afterDelay:.0f];
                 }];
             }];
             

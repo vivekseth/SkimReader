@@ -7,14 +7,18 @@
 //
 
 #import "DocumentViewController.h"
+
 #import <DBChooser/DBChooser.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+
 #import "EpubViewController.h"
+#import "EpubDownloadController.h"
 
-@interface DocumentViewController ()
+@interface DocumentViewController () <EpubDownloadControllerDelegate>
 
-@property (nonatomic, strong) NSArray *files;
+@property (nonatomic, strong) NSMutableArray *epubControllerArray;
+@property (nonatomic, strong) EpubDownloadController *downloadController;
 
 @end
 
@@ -30,57 +34,62 @@
 							action:@selector(refreshTableViewData)
 				  forControlEvents:UIControlEventValueChanged];
 
-	[[self class] createEpubDirectoryIfNeeded];
-}
+	self.epubControllerArray = [@[] mutableCopy];
+	NSArray *filenameArray = [[self class] epubFileList];
+	[filenameArray enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+		NSURL *epubFileURL = [NSURL URLWithString:[EpubDownloadController pathForFileInFolder:SKREpubFileDirectoryName name:filename]];
+		EpubDownloadController *downloadController = [EpubDownloadController new];
+		downloadController.delegate = self;
+		[downloadController parseEpubFromLocalURL:epubFileURL asynchronous:NO];
+	}];
 
-- (void)viewDidAppear:(BOOL)animated {
-	self.files = [[self class] epubFileList];
 	[self.tableView reloadData];
 }
 
 #pragma mark - UITableView Stuff
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.files.count;
+	return self.epubControllerArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileTableViewCell"];
-	cell.textLabel.text = self.files[indexPath.row];
+	KFEpubController *epubController = self.epubControllerArray[indexPath.row];
+	cell.textLabel.text = epubController.contentModel.metaData[@"title"];
 	return cell;
 }
 
 - (void)refreshTableViewData {
-	self.files = [[self class] epubFileList];
+	// self.files = [[self class] epubFileList];
 	[self.tableView reloadData];
 	[self.refreshControl endRefreshing];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	// Return YES if you want the specified item to be editable.
 	return YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *path = [[self class] pathForNewFileWithName:[self.files[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	NSLog(@"%@", path);
-
 	EpubViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EpubViewController"];
-	vc.epubURL = [NSURL URLWithString:path];
+	vc.epubController = self.epubControllerArray[indexPath.row];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		NSString *path = [[self class] pathForNewFileWithName:self.files[indexPath.row]];
+		KFEpubController *epubController = self.epubControllerArray[indexPath.row];
+
 		NSError *error = nil;
-		[[NSFileManager defaultManager] removeItemAtPath: path error: &error];
-		self.files = [[self class] epubFileList];
-		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[[NSFileManager defaultManager] removeItemAtPath:epubController.epubURL.path error: &error];
+		[[NSFileManager defaultManager] removeItemAtPath:epubController.destinationURL.path error: &error];
+
 		if (error) {
 			NSLog(@"%@", error);
 		}
+
+		[self.epubControllerArray removeObjectAtIndex:indexPath.row];
+		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}
 }
 
@@ -91,19 +100,12 @@
 									fromViewController:self completion:^(NSArray *results) {
 		 if ([results count]) {
 			 // Process results from Chooser
+			 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 			 [results enumerateObjectsUsingBlock:^(DBChooserResult *res, NSUInteger idx, BOOL *stop) {
-				 NSLog(@"%@", res.link);
-				 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-				 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-					 NSData *data = [NSData dataWithContentsOfURL:res.link];
-					 [data writeToFile:[[self class] pathForNewFileWithName:res.name] atomically:YES];
-					 NSLog(@"download complete");
-					 dispatch_async(dispatch_get_main_queue(), ^{
-						 self.files = [[self class] epubFileList];
-						 [self.tableView reloadData];
-						 [MBProgressHUD hideHUDForView:self.view animated:YES];
-					 });
-				 });
+				 // There is a possibility that this object may be deallocated?
+				 self.downloadController = [EpubDownloadController new];
+				 self.downloadController.delegate = self;
+				 [self.downloadController asyncDownloadAndParseEpubFromURL:res.link];
 			 }];
 		 } else {
 			 // User canceled the action
@@ -112,38 +114,26 @@
 	 }];
 }
 
+#pragma mark - EpubDownloadControllerDelegate
+
+- (void)epubDownloadController:(EpubDownloadController *)epubDownloadController
+				  didParseEpub:(KFEpubController *)epubController {
+	[self.epubControllerArray addObject:epubController];
+	[self.tableView reloadData];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)epubDownloadController:(EpubDownloadController *)epubDownloadController
+			  didFailWithError:(NSError *)error {
+	NSLog(@"error :(");
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+
 #pragma mark - Utility
 
-+ (NSString *)pathForNewFileWithName:(NSString *)filename {
-	NSString * s = [[[[self class] applicationDocumentsDirectory].path stringByAppendingPathComponent:@"epubs"] stringByAppendingPathComponent:filename];
-	return s;
-}
-
-+ (void)createEpubDirectoryIfNeeded {
-	NSError *error;
-	if (![[NSFileManager defaultManager] createDirectoryAtPath:[[self class] epubDirectoryPath]
-								   withIntermediateDirectories:YES
-													attributes:nil
-														 error:&error])
-	{
-		NSLog(@"Create directory error: %@", error);
-	} else {
-		NSLog(@"Created directory!");
-	}
-}
-
 + (NSArray *)epubFileList {
-	return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[self class] epubDirectoryPath] error:NULL];
-}
-
-+ (NSString *)epubDirectoryPath {
-	return [[[self class] applicationDocumentsDirectory].path
-			stringByAppendingPathComponent:@"epubs"];
-}
-
-+ (NSURL *)applicationDocumentsDirectory {
-	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-												   inDomains:NSUserDomainMask] lastObject];
+	return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[EpubDownloadController pathForFolderInDocuments:SKREpubFileDirectoryName] error:NULL];
 }
 
 @end

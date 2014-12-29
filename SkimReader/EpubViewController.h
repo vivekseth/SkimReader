@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <KFEpubKit/KFEpubKit.h>
 
 @interface EpubViewController : UITableViewController
 
-@property (nonatomic, strong) NSURL *epubURL;
+@property (nonatomic, strong) KFEpubController *epubController;
 
 @end

@@ -63,7 +63,7 @@ static const NSInteger defaultWPM = 300;
 #pragma mark - Utility
 
 - (void)setWPMValue:(NSInteger)wpm {
-	self.wpmLabel.text = [NSString stringWithFormat:@"%ld WPM", wpm];
+	self.wpmLabel.text = [NSString stringWithFormat:@"%ld WPM", (long)wpm];
 	self.spritzViewController.wordsPerMinute = wpm;
 }
 

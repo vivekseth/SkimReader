@@ -102,7 +102,7 @@
         self.contentModel.bookEncryption = [self.parser contentEncryptionForBaseURL:self.destinationURL];
         self.contentModel.metaData = [self.parser metaDataFromDocument:document];
         self.contentModel.coverPath = [self.parser coverPathComponentFromDocument:document];
-        
+
         if (!self.contentModel.metaData)
         {
             NSError *error = [NSError errorWithDomain:KFEpubKitErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey: @"No meta data found"}];
