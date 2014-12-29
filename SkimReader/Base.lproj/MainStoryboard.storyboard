@@ -93,13 +93,13 @@
                                 </connections>
                             </slider>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gwr-VK-Nsg">
-                                <rect key="frame" x="0.0" y="598" width="600" height="11"/>
+                                <rect key="frame" x="0.0" y="598" width="600" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="loG-gS-mqu"/>
                                 </constraints>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQx-4d-3Ve">
-                                <rect key="frame" x="266" y="511" width="69" height="69"/>
+                                <rect key="frame" x="274" y="521" width="50" height="50"/>
                                 <state key="normal" title="Play" image="icon-play.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -109,10 +109,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-J2-3do">
-                                <rect key="frame" x="175" y="511" width="69" height="69"/>
+                                <rect key="frame" x="175" y="521" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="3Ge-nC-J9Q"/>
-                                    <constraint firstAttribute="width" constant="69" id="IDi-h7-tZi"/>
+                                    <constraint firstAttribute="height" constant="50" id="3Ge-nC-J9Q"/>
+                                    <constraint firstAttribute="width" constant="50" id="IDi-h7-tZi"/>
                                 </constraints>
                                 <state key="normal" title="Back" image="icon-skip-backwards.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,16 +121,7 @@
                                     <action selector="skipBackwardsButtonTapped:" destination="ln7-PN-C2z" eventType="touchUpInside" id="bEL-ru-7ze"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmd-BQ-nmJ">
-                                <rect key="frame" x="356" y="511" width="69" height="69"/>
-                                <state key="normal" title="Forward" image="icon-skip-forward.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="skipForwardButtonTapped:" destination="ln7-PN-C2z" eventType="touchUpInside" id="a5J-jS-1YU"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX WPM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67w-fJ-DUZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX WPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67w-fJ-DUZ">
                                 <rect key="frame" x="252" y="444" width="96" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="RCC-KY-e85"/>
@@ -139,33 +130,44 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmd-BQ-nmJ">
+                                <rect key="frame" x="356" y="521" width="50" height="50"/>
+                                <state key="normal" title="Forward" image="icon-skip-forward.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipForwardButtonTapped:" destination="ln7-PN-C2z" eventType="touchUpInside" id="a5J-jS-1YU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.97826967592592595" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NYs-i4-xxD" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="leading" id="21g-hA-eUH"/>
                             <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="UfS-rS-dVl" secondAttribute="centerX" id="44I-9k-hcg"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="bottom" constant="18" id="72a-p9-ijo"/>
+                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="bottom" constant="27" id="72a-p9-ijo"/>
                             <constraint firstItem="Gwr-VK-Nsg" firstAttribute="bottom" secondItem="aQz-zt-tpb" secondAttribute="top" id="8Kz-D3-a7e"/>
                             <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="NYs-i4-xxD" secondAttribute="centerX" id="Bj1-GB-IC5"/>
                             <constraint firstItem="hLn-J2-3do" firstAttribute="centerY" secondItem="FQx-4d-3Ve" secondAttribute="centerY" id="Euh-i3-YUg"/>
                             <constraint firstItem="Gwr-VK-Nsg" firstAttribute="leading" secondItem="KVQ-i8-Y2a" secondAttribute="leading" id="H15-4H-XXa"/>
-                            <constraint firstItem="hLn-J2-3do" firstAttribute="top" secondItem="NYs-i4-xxD" secondAttribute="bottom" constant="8" symbolic="YES" id="Ltv-fj-y52"/>
+                            <constraint firstItem="hLn-J2-3do" firstAttribute="top" secondItem="NYs-i4-xxD" secondAttribute="bottom" constant="18" id="Ltv-fj-y52"/>
                             <constraint firstAttribute="trailing" secondItem="Gwr-VK-Nsg" secondAttribute="trailing" id="Pk5-bO-syP"/>
                             <constraint firstItem="hLn-J2-3do" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="top" id="Uba-U9-th9"/>
-                            <constraint firstItem="FQx-4d-3Ve" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="trailing" constant="22" id="YOK-vf-tnh"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="FQx-4d-3Ve" secondAttribute="centerX" id="fXI-OT-JFM"/>
+                            <constraint firstItem="FQx-4d-3Ve" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="trailing" constant="49" id="YOK-vf-tnh"/>
+                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="FQx-4d-3Ve" secondAttribute="centerX" constant="1" id="fXI-OT-JFM"/>
                             <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="67w-fJ-DUZ" secondAttribute="bottom" constant="8" symbolic="YES" id="mr7-H1-TMC"/>
                             <constraint firstItem="UfS-rS-dVl" firstAttribute="top" secondItem="jQZ-T5-KQv" secondAttribute="bottom" constant="44" id="nA2-4N-abn"/>
-                            <constraint firstItem="NYs-i4-xxD" firstAttribute="trailing" secondItem="cmd-BQ-nmJ" secondAttribute="trailing" id="pUg-pH-0En"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="cmd-BQ-nmJ" secondAttribute="bottom" constant="18" id="rVT-29-j6T"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="trailing" secondItem="cmd-BQ-nmJ" secondAttribute="trailing" constant="19" id="pUg-pH-0En"/>
+                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="cmd-BQ-nmJ" secondAttribute="bottom" constant="27" id="rVT-29-j6T"/>
                             <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="67w-fJ-DUZ" secondAttribute="centerX" id="rvp-Up-Zvy"/>
                             <constraint firstItem="hLn-J2-3do" firstAttribute="centerY" secondItem="cmd-BQ-nmJ" secondAttribute="centerY" id="uld-JM-J3L"/>
-                            <constraint firstItem="cmd-BQ-nmJ" firstAttribute="leading" secondItem="FQx-4d-3Ve" secondAttribute="trailing" constant="21" id="xI8-bu-kiq"/>
+                            <constraint firstItem="cmd-BQ-nmJ" firstAttribute="leading" secondItem="FQx-4d-3Ve" secondAttribute="trailing" constant="32" id="xI8-bu-kiq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playPauseButton" destination="FQx-4d-3Ve" id="wUy-oZ-32V"/>
                         <outlet property="progressView" destination="Gwr-VK-Nsg" id="WhN-W6-GS6"/>
+                        <outlet property="skipBackwardsButton" destination="hLn-J2-3do" id="ksY-PM-NQ3"/>
+                        <outlet property="skipForwardButton" destination="cmd-BQ-nmJ" id="bBk-Ro-cei"/>
                         <outlet property="spritzLabel" destination="UfS-rS-dVl" id="mEX-X7-5rf"/>
                         <outlet property="wpmLabel" destination="67w-fJ-DUZ" id="CbN-AM-IFP"/>
                     </connections>

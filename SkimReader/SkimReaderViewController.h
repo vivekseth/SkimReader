@@ -19,6 +19,10 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *playPauseButton;
 
+@property (nonatomic, strong) IBOutlet UIButton *skipForwardButton;
+
+@property (nonatomic, strong) IBOutlet UIButton *skipBackwardsButton;
+
 @property (nonatomic, strong) IBOutlet UILabel *wpmLabel;
 
 @property (nonatomic, strong) IBOutlet UIProgressView *progressView;

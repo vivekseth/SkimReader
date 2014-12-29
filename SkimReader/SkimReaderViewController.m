@@ -34,6 +34,11 @@ static const NSInteger defaultWPM = 300;
 
 	[self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
 	[self.playPauseButton setTitle:@"Play" forState:UIControlStateSelected];
+
+	[[self class] convertButtonImageToTemplate:self.playPauseButton state:UIControlStateNormal];
+	[[self class] convertButtonImageToTemplate:self.playPauseButton state:UIControlStateSelected];
+	[[self class] convertButtonImageToTemplate:self.skipForwardButton state:UIControlStateNormal];
+	[[self class] convertButtonImageToTemplate:self.skipBackwardsButton state:UIControlStateNormal];
 }
 
 #pragma mark - UI Element Handlers
@@ -92,6 +97,11 @@ static const NSInteger defaultWPM = 300;
 	self.spritzViewController.currentWordIndex = currentProgress;
 	[self.spritzViewController displayWordWithIndex:self.spritzViewController.currentWordIndex];
 	[self setProgressViewValue:((CGFloat)(self.spritzViewController.currentWordIndex + 1) / (CGFloat)self.spritzViewController.totalWordCount)];
+}
+
++ (void)convertButtonImageToTemplate:(UIButton *)button state:(UIControlState)state {
+	UIImage * __weak image = [[button imageForState:state] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	[button setImage:image forState:state];
 }
 
 #pragma mark - VSSpritzViewControllerDelegate
