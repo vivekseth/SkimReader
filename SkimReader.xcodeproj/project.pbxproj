@@ -26,6 +26,8 @@
 		5830F2F31A504EE700D277AB /* icon-skip-backwards.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EE1A504EE700D277AB /* icon-skip-backwards.png */; };
 		5830F2F41A504EE700D277AB /* icon-skip-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EF1A504EE700D277AB /* icon-skip-forward.png */; };
 		5830F32D1A517CC800D277AB /* EpubDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5830F32C1A517CC800D277AB /* EpubDownloadController.m */; };
+		58EACA821A534F1A00A77CB9 /* EpubTOCExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */; };
+		58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,10 @@
 		5830F2EF1A504EE700D277AB /* icon-skip-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-skip-forward.png"; sourceTree = "<group>"; };
 		5830F32B1A517CC800D277AB /* EpubDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubDownloadController.h; sourceTree = "<group>"; };
 		5830F32C1A517CC800D277AB /* EpubDownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubDownloadController.m; sourceTree = "<group>"; };
+		58EACA801A534F1A00A77CB9 /* EpubTOCExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubTOCExtractor.h; sourceTree = "<group>"; };
+		58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubTOCExtractor.m; sourceTree = "<group>"; };
+		58EACA831A5350CB00A77CB9 /* EpubChapterListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubChapterListing.h; sourceTree = "<group>"; };
+		58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubChapterListing.m; sourceTree = "<group>"; };
 		7C8AC752C5C532C826C81665 /* Pods-SkimReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkimReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkimReader/Pods-SkimReader.release.xcconfig"; sourceTree = "<group>"; };
 		8CB9603B4672F2C153B55E16 /* libPods-SkimReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SkimReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,18 +131,12 @@
 			isa = PBXGroup;
 			children = (
 				5830F2EA1A504EE700D277AB /* Button Icons */,
-				581E53411A4F765200DFB55E /* GTMNSString-HTML */,
 				5830F32E1A5185FD00D277AB /* Categories */,
 				581E53161A4F3DE800DFB55E /* AppDelegate.h */,
 				581E53171A4F3DE800DFB55E /* AppDelegate.m */,
-				5830F32B1A517CC800D277AB /* EpubDownloadController.h */,
-				5830F32C1A517CC800D277AB /* EpubDownloadController.m */,
-				581E53191A4F3DE800DFB55E /* DocumentViewController.h */,
-				581E531A1A4F3DE800DFB55E /* DocumentViewController.m */,
-				581E53391A4F576900DFB55E /* EpubViewController.h */,
-				581E533A1A4F576900DFB55E /* EpubViewController.m */,
-				581E534C1A4F786D00DFB55E /* SkimReaderViewController.h */,
-				581E534D1A4F786D00DFB55E /* SkimReaderViewController.m */,
+				58EACA7F1A534EC700A77CB9 /* Blitz VIew */,
+				58EACA7E1A534EBF00A77CB9 /* Chapter View */,
+				58EACA7D1A534EAD00A77CB9 /* Document View */,
 				581E531C1A4F3DE800DFB55E /* MainStoryboard.storyboard */,
 				581E531F1A4F3DE800DFB55E /* Images.xcassets */,
 				581E53211A4F3DE800DFB55E /* LaunchScreen.xib */,
@@ -199,8 +199,42 @@
 		5830F32E1A5185FD00D277AB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				581E53411A4F765200DFB55E /* GTMNSString-HTML */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		58EACA7D1A534EAD00A77CB9 /* Document View */ = {
+			isa = PBXGroup;
+			children = (
+				5830F32B1A517CC800D277AB /* EpubDownloadController.h */,
+				5830F32C1A517CC800D277AB /* EpubDownloadController.m */,
+				581E53191A4F3DE800DFB55E /* DocumentViewController.h */,
+				581E531A1A4F3DE800DFB55E /* DocumentViewController.m */,
+			);
+			name = "Document View";
+			sourceTree = "<group>";
+		};
+		58EACA7E1A534EBF00A77CB9 /* Chapter View */ = {
+			isa = PBXGroup;
+			children = (
+				581E53391A4F576900DFB55E /* EpubViewController.h */,
+				581E533A1A4F576900DFB55E /* EpubViewController.m */,
+				58EACA801A534F1A00A77CB9 /* EpubTOCExtractor.h */,
+				58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */,
+				58EACA831A5350CB00A77CB9 /* EpubChapterListing.h */,
+				58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */,
+			);
+			name = "Chapter View";
+			sourceTree = "<group>";
+		};
+		58EACA7F1A534EC700A77CB9 /* Blitz VIew */ = {
+			isa = PBXGroup;
+			children = (
+				581E534C1A4F786D00DFB55E /* SkimReaderViewController.h */,
+				581E534D1A4F786D00DFB55E /* SkimReaderViewController.m */,
+			);
+			name = "Blitz VIew";
 			sourceTree = "<group>";
 		};
 		5F3DC4923969D31481D12B0F /* Pods */ = {
@@ -353,12 +387,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */,
 				581E531B1A4F3DE800DFB55E /* DocumentViewController.m in Sources */,
 				581E534E1A4F786D00DFB55E /* SkimReaderViewController.m in Sources */,
 				581E53181A4F3DE800DFB55E /* AppDelegate.m in Sources */,
 				5830F32D1A517CC800D277AB /* EpubDownloadController.m in Sources */,
 				581E53491A4F765200DFB55E /* GTMNSString+HTML.m in Sources */,
 				581E533B1A4F576900DFB55E /* EpubViewController.m in Sources */,
+				58EACA821A534F1A00A77CB9 /* EpubTOCExtractor.m in Sources */,
 				581E534A1A4F765200DFB55E /* NSString+HTML.m in Sources */,
 				581E53151A4F3DE800DFB55E /* main.m in Sources */,
 			);

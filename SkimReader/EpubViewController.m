@@ -7,14 +7,18 @@
 //
 
 #import "EpubViewController.h"
+
 #import <KFEpubKit/KFEpubKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+
 #import "NSString+HTML.h"
 #import "SkimReaderViewController.h"
+#import "EpubTOCExtractor.h"
+#import "EpubChapterListing.h"
 
 @interface EpubViewController ()
 
-@property (nonatomic, strong) NSArray *chapterXMLElements;
+@property (nonatomic, strong) NSArray *chapterListings;
 
 @end
 
@@ -23,62 +27,47 @@
 #pragma mark - UITableView Stuff
 
 - (void)viewDidLoad {
-	NSString *relativePath = self.epubController.contentModel.manifest[@"ncx"][@"href"];
-	NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:relativePath];
-	NSString *contentString = [NSString stringWithContentsOfFile:fullContentPath encoding:NSUTF8StringEncoding error:nil];
+	[super viewDidLoad];
 
-	NSError *error = nil;
-	DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:contentString options:kNilOptions error:&error];
-	if (error) {
-		NSLog(@"%@",error);
-		return;
-	}
+	self.chapterListings = [EpubTOCExtractor flattenedChapterArray:[EpubTOCExtractor chaptersForEpubController:self.epubController]];
 
-	DDXMLElement *rootElement = [document rootElement];
-	DDXMLElement *navmap = [rootElement elementsForName:@"navMap"][0];
-	NSArray *chapterXMLElements = [navmap elementsForName:@"navPoint"];
-	self.chapterXMLElements = chapterXMLElements;
+	NSLog(@"got chapter");
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.chapterXMLElements) {
-		return self.chapterXMLElements.count;
-	} else {
-		return 0;
-	}
+	return self.chapterListings.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.chapterXMLElements) {
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EpubTableViewCell"];
-		DDXMLElement *navPoint = self.chapterXMLElements[indexPath.row];
-		cell.textLabel.text = [(DDXMLElement *)[(DDXMLElement *)[navPoint elementsForName:@"navLabel"][0] elementsForName:@"text"][0] stringValue];
-		return cell;
-	} else {
-		return nil;
-	}
+
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EpubTableViewCell"];
+	EpubChapterListing *chapterListing = self.chapterListings[indexPath.row];
+
+	cell.textLabel.text = chapterListing.title;
+	cell.indentationWidth = 20;
+	cell.indentationLevel = chapterListing.level;
+
+	return cell;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.chapterXMLElements) {
-		DDXMLElement *navPoint = self.chapterXMLElements[indexPath.row];
-		DDXMLElement *contentElement = [navPoint elementsForName:@"content"][0];
-		NSString *relativePath = [[contentElement attributeForName:@"src"] stringValue];
-		NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:relativePath];
-		NSString *contentString = [NSString stringWithContentsOfFile:fullContentPath encoding:NSUTF8StringEncoding error:nil];
+	EpubChapterListing *chapterListing = self.chapterListings[indexPath.row];
+	NSString *relativePath = chapterListing.path;
+	NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:relativePath];
+	NSString *contentString = [NSString stringWithContentsOfFile:fullContentPath encoding:NSUTF8StringEncoding error:nil];
 
-		if (contentString == nil) {
-			NSLog(@"stringWithContentsOfFile didnt work");
-			NSData *data = [NSData dataWithContentsOfFile:fullContentPath];
-			NSString *temp = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-			contentString = temp;
-		}
-
-		NSString *strippedString = [[contentString stringByDecodingHTMLEntities] stringByConvertingHTMLToPlainText];
-		SkimReaderViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SkimReaderViewController"];
-		vc.textContent = strippedString;
-		[self.navigationController pushViewController:vc animated:YES];
+	if (contentString == nil) {
+		NSLog(@"stringWithContentsOfFile didnt work");
+		NSData *data = [NSData dataWithContentsOfFile:fullContentPath];
+		NSString *temp = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		contentString = temp;
 	}
+
+	NSString *strippedString = [[contentString stringByDecodingHTMLEntities] stringByConvertingHTMLToPlainText];
+	SkimReaderViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SkimReaderViewController"];
+	vc.textContent = strippedString;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
