@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) NSMutableArray *epubControllerArray;
 @property (nonatomic, strong) EpubDownloadController *downloadController;
+@property (nonatomic) BOOL isSynchronouslyFindingEpubs; // Used to conditionally reload tableview on each -epubDownloadController:didParseEpub: delegate call.
 
 @end
 
@@ -29,21 +30,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.refreshControl = [[UIRefreshControl alloc] init];
-	[self.refreshControl addTarget:self
-							action:@selector(refreshTableViewData)
-				  forControlEvents:UIControlEventValueChanged];
-
-	self.epubControllerArray = [@[] mutableCopy];
-	NSArray *filenameArray = [[self class] epubFileList];
-	[filenameArray enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-		NSURL *epubFileURL = [NSURL URLWithString:[EpubDownloadController pathForFileInFolder:SKREpubFileDirectoryName name:filename]];
-		EpubDownloadController *downloadController = [EpubDownloadController new];
-		downloadController.delegate = self;
-		[downloadController parseEpubFromLocalURL:epubFileURL asynchronous:NO];
-	}];
-
-	[self.tableView reloadData];
+	self.isSynchronouslyFindingEpubs = NO;
+	[self loadEpubsFromDisk];
 }
 
 #pragma mark - UITableView Stuff
@@ -57,12 +45,6 @@
 	KFEpubController *epubController = self.epubControllerArray[indexPath.row];
 	cell.textLabel.text = epubController.contentModel.metaData[@"title"];
 	return cell;
-}
-
-- (void)refreshTableViewData {
-	// self.files = [[self class] epubFileList];
-	[self.tableView reloadData];
-	[self.refreshControl endRefreshing];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -99,10 +81,10 @@
 	[[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypeDirect
 									fromViewController:self completion:^(NSArray *results) {
 		 if ([results count]) {
-			 // Process results from Chooser
+			 // Explicitly set to NO to ensure tableView is reloaded after data comes.
+			 self.isSynchronouslyFindingEpubs = NO;
 			 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 			 [results enumerateObjectsUsingBlock:^(DBChooserResult *res, NSUInteger idx, BOOL *stop) {
-				 // There is a possibility that this object may be deallocated?
 				 self.downloadController = [EpubDownloadController new];
 				 self.downloadController.delegate = self;
 				 [self.downloadController asyncDownloadAndParseEpubFromURL:res.link];
@@ -119,8 +101,11 @@
 - (void)epubDownloadController:(EpubDownloadController *)epubDownloadController
 				  didParseEpub:(KFEpubController *)epubController {
 	[self.epubControllerArray addObject:epubController];
-	[self.tableView reloadData];
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
+
+	if (!self.isSynchronouslyFindingEpubs) {
+		[self.tableView reloadData];
+		[MBProgressHUD hideHUDForView:self.view animated:YES];
+	}
 }
 
 - (void)epubDownloadController:(EpubDownloadController *)epubDownloadController
@@ -134,6 +119,26 @@
 
 + (NSArray *)epubFileList {
 	return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[EpubDownloadController pathForFolderInDocuments:SKREpubFileDirectoryName] error:NULL];
+}
+
+- (void)loadEpubsFromDisk {
+
+	self.isSynchronouslyFindingEpubs = YES;
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+
+	self.epubControllerArray = [@[] mutableCopy];
+	NSArray *filenameArray = [[self class] epubFileList];
+	[filenameArray enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+		NSURL *epubFileURL = [NSURL URLWithString:[EpubDownloadController pathForFileInFolder:SKREpubFileDirectoryName name:filename]];
+		EpubDownloadController *downloadController = [EpubDownloadController new];
+		downloadController.delegate = self;
+		[downloadController parseEpubFromLocalURL:epubFileURL asynchronous:NO];
+	}];
+
+	[self.tableView reloadData];
+	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	self.isSynchronouslyFindingEpubs = NO;
 }
 
 @end
