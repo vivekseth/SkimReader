@@ -19,7 +19,9 @@
 
 @property (nonatomic, strong) NSMutableArray *epubControllerArray;
 @property (nonatomic, strong) EpubDownloadController *downloadController;
-@property (nonatomic) BOOL isSynchronouslyFindingEpubs; // Used to conditionally reload tableview on each -epubDownloadController:didParseEpub: delegate call.
+// Used to conditionally reload tableview on each -epubDownloadController:didParseEpub: delegate call.
+// This has potential to cause race conditions.
+@property (nonatomic) BOOL isSynchronouslyFindingEpubs;
 
 @end
 
@@ -126,19 +128,23 @@
 	self.isSynchronouslyFindingEpubs = YES;
 	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-	self.epubControllerArray = [@[] mutableCopy];
-	NSArray *filenameArray = [[self class] epubFileList];
-	[filenameArray enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-		NSURL *epubFileURL = [NSURL URLWithString:[EpubDownloadController pathForFileInFolder:SKREpubFileDirectoryName name:filename]];
-		EpubDownloadController *downloadController = [EpubDownloadController new];
-		downloadController.delegate = self;
-		[downloadController parseEpubFromLocalURL:epubFileURL asynchronous:NO];
-	}];
+		self.epubControllerArray = [@[] mutableCopy];
+		NSArray *filenameArray = [[self class] epubFileList];
+		[filenameArray enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+			NSURL *epubFileURL = [NSURL URLWithString:[EpubDownloadController pathForFileInFolder:SKREpubFileDirectoryName name:filename]];
+			EpubDownloadController *downloadController = [EpubDownloadController new];
+			downloadController.delegate = self;
+			[downloadController parseEpubFromLocalURL:epubFileURL asynchronous:NO];
+		}];
 
-	[self.tableView reloadData];
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
-	self.isSynchronouslyFindingEpubs = NO;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.tableView reloadData];
+			[MBProgressHUD hideHUDForView:self.view animated:YES];
+			self.isSynchronouslyFindingEpubs = NO;
+		});
+	});
 }
 
 @end

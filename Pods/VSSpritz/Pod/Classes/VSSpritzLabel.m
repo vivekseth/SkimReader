@@ -9,6 +9,8 @@
 #import "VSSpritzLabel.h"
 #import "UIView+KHAExtensions.h"
 
+const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
+
 @interface VSSpritzLabel ()
 @property (nonatomic, strong) UILabel *wordLabel;
 @property (nonatomic, strong) NSLayoutConstraint *horizontalWordPositionConstraint;
@@ -85,8 +87,8 @@
 }
 
 - (void)setUpContainerBorder {
-	self.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:0.1].CGColor;
-	self.layer.borderWidth = 4.0;
+	self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+	self.layer.borderWidth = 2.0;
 	self.layer.cornerRadius = 20;
 }
 
@@ -167,7 +169,7 @@
 	[[NSMutableAttributedString alloc] initWithString:word
 										   attributes:@{
 														NSFontAttributeName: self.wordLabel.font,
-														NSForegroundColorAttributeName : [UIColor colorWithWhite:0.55 alpha:1.0]
+														NSForegroundColorAttributeName : [UIColor colorWithWhite:VSDarkGreyTextWhiteLevel alpha:1.0]
 														}];
 
 	NSRange pivotCharRange = NSMakeRange(pivotCharacterIndex, 1);

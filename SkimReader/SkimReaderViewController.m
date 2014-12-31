@@ -13,6 +13,10 @@ static const NSInteger defaultWPM = 300;
 @interface SkimReaderViewController () <VSSpritzViewControllerDelegate>
 
 @property (nonatomic) BOOL isStarted;
+@property (nonatomic) NSInteger currentWPM;
+
+// @property (nonatomic, strong) UILongPressGestureRecognizer *skipBackwardLongPressGestureRecognizer;
+@property (nonatomic, strong) UILongPressGestureRecognizer *skipForwardLongPressGestureRecognizer;
 
 @property (nonatomic, strong) VSSpritzViewController *spritzViewController;
 
@@ -39,12 +43,33 @@ static const NSInteger defaultWPM = 300;
 	[[self class] convertButtonImageToTemplate:self.playPauseButton state:UIControlStateSelected];
 	[[self class] convertButtonImageToTemplate:self.skipForwardButton state:UIControlStateNormal];
 	[[self class] convertButtonImageToTemplate:self.skipBackwardsButton state:UIControlStateNormal];
+
+	self.skipForwardLongPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestureRecognizer:)];
+	[self.skipForwardButton addGestureRecognizer:self.skipForwardLongPressGestureRecognizer];
+}
+
+#pragma mark - UILongPressGestureRecognizer
+
+- (void)handleLongPressGestureRecognizer:(UILongPressGestureRecognizer *)longPressGestureRecognizer {
+	switch (longPressGestureRecognizer.state) {
+		case UIGestureRecognizerStateBegan: {
+			self.spritzViewController.wordsPerMinute = 5000;
+			[self.spritzViewController startWithoutAnimation];
+			break;
+		}
+		case UIGestureRecognizerStateEnded:
+		default: {
+			[self.spritzViewController stop];
+			self.spritzViewController.wordsPerMinute = self.currentWPM;
+			break;
+		}	}
 }
 
 #pragma mark - UI Element Handlers
 
 - (IBAction)wpmSliderValueDidChange:(UISlider *)slider {
 	[self setWPMValue:(NSInteger)slider.value];
+	self.currentWPM = slider.value;
 }
 
 - (IBAction)playPauseButtonTapped:(UIButton *)sender {
