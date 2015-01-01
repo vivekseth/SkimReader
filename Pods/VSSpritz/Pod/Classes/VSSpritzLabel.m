@@ -59,20 +59,21 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
  All init methods should call this method.
  */
 - (void)_commonInit {
-	[self setUpContainerBorder];
+	_font = [[self class] defaultFont];
+	[self setUpContainerView];
 	[self setUpWordLabel];
-	[self setUpCrosshairLine];
+	[self setUpCrosshairView];
 }
 
 #pragma mark - Set Up
 
 - (void)setUpWordLabel {
 	self.wordLabel = [UILabel new];
-	self.wordLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:60.0f];
+	self.wordLabel.font = self.font;
 	self.wordLabel.textAlignment = NSTextAlignmentLeft;
 
 	self.wordLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	[self addSubview:self.wordLabel];
+	[self insertSubview:self.wordLabel atIndex:2];
 	[self kha_addConstraintsForVerticallyCenteredSubview:self.wordLabel];
 
 	NSLayoutConstraint * constraint = [NSLayoutConstraint constraintWithItem:self.wordLabel
@@ -86,26 +87,32 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 	[self addConstraint:constraint];
 }
 
-- (void)setUpContainerBorder {
-	self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
-	self.layer.borderWidth = 2.0;
-	self.layer.cornerRadius = 20;
+- (void)setUpContainerView {
+
+	self.containerView = self.containerView ?: [[self class] defaultContainerView];
+	UIView *containerView = self.containerView;
+
+	containerView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self insertSubview:containerView atIndex:0];
+	[self kha_pinSubview:containerView toEdges:UIRectEdgeAll];
+
+	self.backgroundColor = [UIColor clearColor]; // To allow containerView to dictate visual shape of spritzLabel.
 }
 
-- (void)setUpCrosshairLine {
-	UIView *targetView = [UIView new];
-	targetView.backgroundColor = [UIColor lightGrayColor];
-	targetView.alpha = 0.1;
+- (void)setUpCrosshairView {
 
-	targetView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self addSubview:targetView];
-	[targetView kha_constrainWidth:2.0];
-	[self kha_addConstraintsForFullHeightSubview:targetView];
-	[self kha_addConstraintsForVerticallyCenteredSubview:targetView];
+	self.crosshairView = self.crosshairView ?: [[self class] defaultCrosshairView];
+	UIView *crosshairView = self.crosshairView;
+
+	crosshairView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self insertSubview:crosshairView atIndex:1];
+	[self kha_addConstraintsForFullHeightSubview:crosshairView];
+	[self kha_addConstraintsForVerticallyCenteredSubview:crosshairView];
+
 	self.horizontalCrosshairPositionConstraint = [NSLayoutConstraint constraintWithItem:self
 																			  attribute:NSLayoutAttributeLeft
 																			  relatedBy:NSLayoutRelationEqual
-																				 toItem:targetView
+																				 toItem:crosshairView
 																			  attribute:NSLayoutAttributeCenterX
 																			 multiplier:1.0
 																			   constant:-self.pivotOffset];
@@ -122,16 +129,16 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 	const CGFloat widthToPivotOffsetRatio = 0.3333;
 
 	CGFloat oldOffsetFromLeft = self.pivotOffset - self.horizontalWordPositionConstraint.constant;
-	CGFloat oldWordWidth = [self.wordLabel.text sizeWithAttributes:@{NSFontAttributeName: self.wordLabel.font}].width;
+	CGFloat oldWordWidth = [self.wordLabel.text sizeWithAttributes:@{NSFontAttributeName: self.font}].width;
 
 	self.pivotOffset = widthToPivotOffsetRatio * self.frame.size.width;
 	self.horizontalCrosshairPositionConstraint.constant = -self.pivotOffset;
-	self.wordLabel.font = [self.wordLabel.font fontWithSize:(heightToFontSizeRatio * self.frame.size.height)];
+	self.font = [self.font fontWithSize:(heightToFontSizeRatio * self.frame.size.height)];
 
 	// Calculate new offset for word based on old offset
 	if (oldWordWidth != 0) {
 		CGFloat offsetFromLeftWidthPercentage = oldOffsetFromLeft / oldWordWidth;
-		CGFloat newOffsetFromLeft = offsetFromLeftWidthPercentage * [self.wordLabel.text sizeWithAttributes:@{NSFontAttributeName: self.wordLabel.font}].width;
+		CGFloat newOffsetFromLeft = offsetFromLeftWidthPercentage * [self.wordLabel.text sizeWithAttributes:@{NSFontAttributeName: self.font}].width;
 		self.horizontalWordPositionConstraint.constant = -newOffsetFromLeft+self.pivotOffset;
 	}
 
@@ -147,10 +154,57 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 	NSString *leftPartOfWord = [word substringToIndex:pivotCharacterIndex];
 	NSString *pivotCharString = [word substringWithRange:pivotCharRange];
 
-	CGFloat leftPartWidth = [leftPartOfWord sizeWithAttributes:@{NSFontAttributeName: self.wordLabel.font}].width;
-	CGFloat centerPartWidth = [pivotCharString sizeWithAttributes:@{NSFontAttributeName: self.wordLabel.font}].width;
+	CGFloat leftPartWidth = [leftPartOfWord sizeWithAttributes:@{NSFontAttributeName: self.font}].width;
+	CGFloat centerPartWidth = [pivotCharString sizeWithAttributes:@{NSFontAttributeName: self.font}].width;
 
 	return leftPartWidth + 0.5 * centerPartWidth;
+}
+
++ (UIView *)defaultCrosshairView {
+	UIView *crosshairView = [UIView new];
+
+	// crosshairView.backgroundColor = [UIColor lightGrayColor];
+	// crosshairView.alpha = 0.2;
+	[crosshairView kha_constrainWidth:1.0];
+
+	// Setup top part of crosshair view.
+	UIView *topView = [UIView new];
+	topView.backgroundColor = [self.class defaultTintColor];
+	[crosshairView addSubview:topView];
+
+	topView.translatesAutoresizingMaskIntoConstraints = NO;
+	[crosshairView kha_pinSubview:topView toEdges:UIRectEdgeTop|UIRectEdgeLeft|UIRectEdgeRight];
+	[crosshairView addConstraint:[NSLayoutConstraint constraintWithItem:topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:crosshairView attribute:NSLayoutAttributeHeight multiplier:0.166666667 constant:0.0]];
+
+	// Setup top part of crosshair view.
+	UIView *bottomView = [UIView new];
+	bottomView.backgroundColor = [self.class defaultTintColor];
+	[crosshairView addSubview:bottomView];
+
+	bottomView.translatesAutoresizingMaskIntoConstraints = NO;
+	[crosshairView kha_pinSubview:bottomView toEdges:UIRectEdgeBottom|UIRectEdgeLeft|UIRectEdgeRight];
+	[crosshairView addConstraint:[NSLayoutConstraint constraintWithItem:bottomView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:crosshairView attribute:NSLayoutAttributeHeight multiplier:.166666667 constant:0.0]];
+
+	return crosshairView;
+}
+
++ (UIView *)defaultContainerView {
+	UIView *containerView = [UIView new];
+
+	containerView.layer.borderColor = [self.class defaultTintColor].CGColor; //[UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+	containerView.layer.borderWidth = 1.0;
+	containerView.layer.cornerRadius = 20;
+	containerView.backgroundColor = [UIColor whiteColor];
+
+	return containerView;
+}
+
++ (UIFont *)defaultFont {
+	return [UIFont fontWithName:@"Helvetica" size:60.0f];
+}
+
++ (UIColor *)defaultTintColor {
+	return [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
 }
 
 #pragma mark - Public Methods
@@ -168,13 +222,13 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 	NSMutableAttributedString * mutableAttributedString =
 	[[NSMutableAttributedString alloc] initWithString:word
 										   attributes:@{
-														NSFontAttributeName: self.wordLabel.font,
+														NSFontAttributeName: self.font,
 														NSForegroundColorAttributeName : [UIColor colorWithWhite:VSDarkGreyTextWhiteLevel alpha:1.0]
 														}];
 
 	NSRange pivotCharRange = NSMakeRange(pivotCharacterIndex, 1);
 	[mutableAttributedString setAttributes:@{
-											 NSFontAttributeName: self.wordLabel.font,
+											 NSFontAttributeName: self.font,
 											 NSForegroundColorAttributeName : [UIColor blackColor]
 											 }
 									 range:pivotCharRange];
