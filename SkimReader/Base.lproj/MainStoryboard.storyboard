@@ -76,30 +76,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfS-rS-dVl" customClass="VSSpritzLabel">
-                                <rect key="frame" x="175" y="64" width="250" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="173" y="40" width="255" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="AM8-y1-3nE"/>
-                                    <constraint firstAttribute="width" constant="250" id="MV2-qL-1dw"/>
+                                    <constraint firstAttribute="width" constant="255" id="MV2-qL-1dw"/>
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="300" minValue="200" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="NYs-i4-xxD">
-                                <rect key="frame" x="173" y="473" width="254" height="31"/>
+                                <rect key="frame" x="171" y="550" width="259" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="xkN-Xo-Fxf"/>
+                                    <constraint firstAttribute="height" constant="30" id="KTB-fL-EVM"/>
+                                    <constraint firstAttribute="width" constant="255" id="xkN-Xo-Fxf"/>
                                 </constraints>
                                 <connections>
                                     <action selector="wpmSliderValueDidChange:" destination="ln7-PN-C2z" eventType="valueChanged" id="aGw-MF-fRS"/>
                                 </connections>
                             </slider>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gwr-VK-Nsg">
-                                <rect key="frame" x="0.0" y="598" width="600" height="2"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="loG-gS-mqu"/>
-                                </constraints>
-                            </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQx-4d-3Ve">
-                                <rect key="frame" x="274" y="521" width="50" height="50"/>
+                                <rect key="frame" x="226" y="497" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="7Zc-to-8tE"/>
+                                    <constraint firstAttribute="width" constant="45" id="E01-eU-1D0"/>
+                                    <constraint firstAttribute="height" constant="45" id="Gy5-LO-gPr"/>
+                                </constraints>
                                 <state key="normal" title="Play" image="icon-play.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -109,10 +109,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-J2-3do">
-                                <rect key="frame" x="175" y="521" width="50" height="50"/>
+                                <rect key="frame" x="173" y="497" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3Ge-nC-J9Q"/>
-                                    <constraint firstAttribute="width" constant="50" id="IDi-h7-tZi"/>
+                                    <constraint firstAttribute="height" constant="45" id="3Ge-nC-J9Q"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="G78-Xv-ygB"/>
+                                    <constraint firstAttribute="width" constant="45" id="IDi-h7-tZi"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="zit-1Y-vM7"/>
                                 </constraints>
                                 <state key="normal" title="Back" image="icon-skip-backwards.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,8 +123,8 @@
                                     <action selector="skipBackwardsButtonTapped:" destination="ln7-PN-C2z" eventType="touchUpInside" id="bEL-ru-7ze"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX WPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67w-fJ-DUZ">
-                                <rect key="frame" x="252" y="444" width="96" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX WPM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67w-fJ-DUZ">
+                                <rect key="frame" x="332" y="509" width="96" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="RCC-KY-e85"/>
                                 </constraints>
@@ -131,7 +133,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmd-BQ-nmJ">
-                                <rect key="frame" x="356" y="521" width="50" height="50"/>
+                                <rect key="frame" x="279" y="497" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="qUu-ml-bT6"/>
+                                    <constraint firstAttribute="height" constant="45" id="zcw-iO-01x"/>
+                                </constraints>
                                 <state key="normal" title="Forward" image="icon-skip-forward.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -139,28 +145,31 @@
                                     <action selector="skipForwardButtonTapped:" destination="ln7-PN-C2z" eventType="touchUpInside" id="a5J-jS-1YU"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gwr-VK-Nsg">
+                                <rect key="frame" x="173" y="137" width="255" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="loG-gS-mqu"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NYs-i4-xxD" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="leading" id="21g-hA-eUH"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="UfS-rS-dVl" secondAttribute="centerX" id="44I-9k-hcg"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="bottom" constant="27" id="72a-p9-ijo"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="bottom" secondItem="aQz-zt-tpb" secondAttribute="top" id="8Kz-D3-a7e"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="NYs-i4-xxD" secondAttribute="centerX" id="Bj1-GB-IC5"/>
-                            <constraint firstItem="hLn-J2-3do" firstAttribute="centerY" secondItem="FQx-4d-3Ve" secondAttribute="centerY" id="Euh-i3-YUg"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="leading" secondItem="KVQ-i8-Y2a" secondAttribute="leading" id="H15-4H-XXa"/>
-                            <constraint firstItem="hLn-J2-3do" firstAttribute="top" secondItem="NYs-i4-xxD" secondAttribute="bottom" constant="18" id="Ltv-fj-y52"/>
-                            <constraint firstAttribute="trailing" secondItem="Gwr-VK-Nsg" secondAttribute="trailing" id="Pk5-bO-syP"/>
-                            <constraint firstItem="hLn-J2-3do" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="top" id="Uba-U9-th9"/>
-                            <constraint firstItem="FQx-4d-3Ve" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="trailing" constant="49" id="YOK-vf-tnh"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="FQx-4d-3Ve" secondAttribute="centerX" constant="1" id="fXI-OT-JFM"/>
-                            <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="67w-fJ-DUZ" secondAttribute="bottom" constant="8" symbolic="YES" id="mr7-H1-TMC"/>
-                            <constraint firstItem="UfS-rS-dVl" firstAttribute="top" secondItem="jQZ-T5-KQv" secondAttribute="bottom" constant="44" id="nA2-4N-abn"/>
-                            <constraint firstItem="NYs-i4-xxD" firstAttribute="trailing" secondItem="cmd-BQ-nmJ" secondAttribute="trailing" constant="19" id="pUg-pH-0En"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="cmd-BQ-nmJ" secondAttribute="bottom" constant="27" id="rVT-29-j6T"/>
-                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="centerX" secondItem="67w-fJ-DUZ" secondAttribute="centerX" id="rvp-Up-Zvy"/>
-                            <constraint firstItem="hLn-J2-3do" firstAttribute="centerY" secondItem="cmd-BQ-nmJ" secondAttribute="centerY" id="uld-JM-J3L"/>
-                            <constraint firstItem="cmd-BQ-nmJ" firstAttribute="leading" secondItem="FQx-4d-3Ve" secondAttribute="trailing" constant="32" id="xI8-bu-kiq"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="leading" id="7ei-cw-MtS"/>
+                            <constraint firstItem="Gwr-VK-Nsg" firstAttribute="top" secondItem="UfS-rS-dVl" secondAttribute="bottom" constant="17" id="8Mv-bX-dMu"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="hLn-J2-3do" secondAttribute="bottom" constant="8" id="DoY-Um-iwN"/>
+                            <constraint firstAttribute="centerX" secondItem="UfS-rS-dVl" secondAttribute="centerX" id="KNY-0o-reg"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="FQx-4d-3Ve" secondAttribute="bottom" constant="8" id="LQg-kQ-srx"/>
+                            <constraint firstItem="cmd-BQ-nmJ" firstAttribute="leading" secondItem="FQx-4d-3Ve" secondAttribute="trailing" constant="8" id="Pog-W9-1Pt"/>
+                            <constraint firstItem="67w-fJ-DUZ" firstAttribute="leading" secondItem="cmd-BQ-nmJ" secondAttribute="trailing" constant="8" id="bOm-dU-KkV"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="67w-fJ-DUZ" secondAttribute="bottom" constant="20" id="bj2-Yn-HMu"/>
+                            <constraint firstItem="67w-fJ-DUZ" firstAttribute="trailing" secondItem="NYs-i4-xxD" secondAttribute="trailing" id="dBx-HG-bqq"/>
+                            <constraint firstAttribute="centerX" secondItem="Gwr-VK-Nsg" secondAttribute="centerX" id="dvY-cC-9pb"/>
+                            <constraint firstItem="aQz-zt-tpb" firstAttribute="top" secondItem="NYs-i4-xxD" secondAttribute="bottom" constant="20" id="jtZ-mg-fDF"/>
+                            <constraint firstItem="FQx-4d-3Ve" firstAttribute="leading" secondItem="hLn-J2-3do" secondAttribute="trailing" constant="8" id="ldQ-rl-YA1"/>
+                            <constraint firstItem="UfS-rS-dVl" firstAttribute="top" secondItem="jQZ-T5-KQv" secondAttribute="bottom" constant="20" id="orr-bs-phq"/>
+                            <constraint firstItem="NYs-i4-xxD" firstAttribute="top" secondItem="cmd-BQ-nmJ" secondAttribute="bottom" constant="8" id="qL8-pA-37k"/>
+                            <constraint firstAttribute="centerX" secondItem="NYs-i4-xxD" secondAttribute="centerX" id="uXD-Ue-6SR"/>
+                            <constraint firstItem="UfS-rS-dVl" firstAttribute="width" secondItem="Gwr-VK-Nsg" secondAttribute="width" id="xdr-e3-dF1"/>
                         </constraints>
                     </view>
                     <connections>
