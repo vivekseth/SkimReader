@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.manu.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.manu.$(PRODUCT_NAME:rfc1034identifier)2</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>db-jhcsmzodowaxg4x</string>
+				<string>db-bw8i8t6rcsw8n85</string>
 			</array>
 		</dict>
 	</array>

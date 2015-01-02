@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "581E530E1A4F3DE800DFB55E"
-               BuildableName = "SkimReader.app"
-               BlueprintName = "SkimReader"
-               ReferencedContainer = "container:SkimReader.xcodeproj">
+               BuildableName = "Blitz.app"
+               BlueprintName = "Blitz"
+               ReferencedContainer = "container:Blitz.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "581E53271A4F3DE800DFB55E"
-               BuildableName = "SkimReaderTests.xctest"
-               BlueprintName = "SkimReaderTests"
-               ReferencedContainer = "container:SkimReader.xcodeproj">
+               BuildableName = "BlitzTests.xctest"
+               BlueprintName = "BlitzTests"
+               ReferencedContainer = "container:Blitz.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "581E53271A4F3DE800DFB55E"
-               BuildableName = "SkimReaderTests.xctest"
-               BlueprintName = "SkimReaderTests"
-               ReferencedContainer = "container:SkimReader.xcodeproj">
+               BuildableName = "BlitzTests.xctest"
+               BlueprintName = "BlitzTests"
+               ReferencedContainer = "container:Blitz.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "581E530E1A4F3DE800DFB55E"
-            BuildableName = "SkimReader.app"
-            BlueprintName = "SkimReader"
-            ReferencedContainer = "container:SkimReader.xcodeproj">
+            BuildableName = "Blitz.app"
+            BlueprintName = "Blitz"
+            ReferencedContainer = "container:Blitz.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "581E530E1A4F3DE800DFB55E"
-            BuildableName = "SkimReader.app"
-            BlueprintName = "SkimReader"
-            ReferencedContainer = "container:SkimReader.xcodeproj">
+            BuildableName = "Blitz.app"
+            BlueprintName = "Blitz"
+            ReferencedContainer = "container:Blitz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "581E530E1A4F3DE800DFB55E"
-            BuildableName = "SkimReader.app"
-            BlueprintName = "SkimReader"
-            ReferencedContainer = "container:SkimReader.xcodeproj">
+            BuildableName = "Blitz.app"
+            BlueprintName = "Blitz"
+            ReferencedContainer = "container:Blitz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
