@@ -167,12 +167,22 @@ static const char * VSShowNewWordQueue = "VSShowNewWordQueue";
 }
 
 + (float)relativeTimeForWord:(NSString*)word {
+
+	NSRange numberRange = [word rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]];
     NSRange strongRange = [word rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@".:?!"]];
-    NSRange weakRange = [word rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@",-("]];
-    if (strongRange.location != NSNotFound) return 3;
-    if (weakRange.location != NSNotFound) return 2;
-    if (word.length >= 8) return 2;
-    return 1;
+    NSRange weakRange = [word rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"-,–(—"]];
+
+	if (numberRange.location != NSNotFound) {
+		return 5;
+	} else if (strongRange.location != NSNotFound) {
+		return 3;
+	} else if (weakRange.location != NSNotFound) {
+		return 2;
+	} else if (word.length >= 8) {
+		return 2;
+	} else {
+		return 1;
+	}
 }
 
 @end
