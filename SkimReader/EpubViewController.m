@@ -24,15 +24,13 @@
 
 @implementation EpubViewController
 
-#pragma mark - UITableView Stuff
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
 	self.chapterListings = [EpubTOCExtractor flattenedChapterArray:[EpubTOCExtractor chaptersForEpubController:self.epubController]];
-
-	NSLog(@"got chapter");
 }
+
+#pragma mark - UITableView Stuff
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.chapterListings.count;
