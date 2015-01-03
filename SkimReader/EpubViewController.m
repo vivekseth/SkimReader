@@ -50,9 +50,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	EpubChapterListing *chapterListing = self.chapterListings[indexPath.row];
-	NSString *relativePath = chapterListing.path;
-	NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:relativePath];
+	SkimReaderViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SkimReaderViewController"];
+	vc.textContent = [self textForEpubChapterIndex:indexPath.row];
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Utility
+
+- (NSString *)strippedStringForPath:(NSString *)path {
+	NSString *fullContentPath = path;
 	NSString *contentString = [NSString stringWithContentsOfFile:fullContentPath encoding:NSUTF8StringEncoding error:nil];
 
 	if (contentString == nil) {
@@ -63,9 +69,46 @@
 	}
 
 	NSString *strippedString = [[contentString stringByDecodingHTMLEntities] stringByConvertingHTMLToPlainText];
-	SkimReaderViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SkimReaderViewController"];
-	vc.textContent = strippedString;
-	[self.navigationController pushViewController:vc animated:YES];
+	return strippedString;
+}
+
+- (NSString *)fullPathForSpineIndex:(NSInteger)spineIndex {
+	NSString *relativePath = self.epubController.contentModel.manifest[self.epubController.contentModel.spine[spineIndex]][@"href"];
+	return [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:relativePath];
+}
+
+- (NSString *)textForEpubChapterIndex:(NSInteger)chapterIndex {
+	NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex] path]];
+	NSString *strippedString = @"";
+
+	NSInteger currentSpineIndex = 0;
+	NSString *currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+	while (![fullContentPath hasPrefix:currentContentPath]) {
+		currentSpineIndex++;
+		currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+	}
+
+	if (chapterIndex < self.chapterListings.count - 1) { // Iterate until the beginning of the next chapter.
+		NSString *nextFullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex + 1] path]];
+		while (![nextFullContentPath hasPrefix:currentContentPath]) {
+			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self strippedStringForPath:currentContentPath]];
+
+			currentSpineIndex++;
+			currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+		}
+	} else { // Last chapter so iterate until the end.
+		while (currentSpineIndex < self.epubController.contentModel.spine.count) {
+			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self strippedStringForPath:currentContentPath]];
+
+			currentSpineIndex++;
+			if (currentSpineIndex == self.epubController.contentModel.spine.count) {
+				break;
+			}
+			currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+		}
+	}
+
+	return strippedString;
 }
 
 @end
