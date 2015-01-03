@@ -57,7 +57,7 @@
 
 #pragma mark - Utility
 
-- (NSString *)strippedStringForPath:(NSString *)path {
++ (NSString *)strippedStringForPath:(NSString *)path {
 	NSString *fullContentPath = path;
 	NSString *contentString = [NSString stringWithContentsOfFile:fullContentPath encoding:NSUTF8StringEncoding error:nil];
 
@@ -91,14 +91,14 @@
 	if (chapterIndex < self.chapterListings.count - 1) { // Iterate until the beginning of the next chapter.
 		NSString *nextFullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex + 1] path]];
 		while (![nextFullContentPath hasPrefix:currentContentPath]) {
-			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self strippedStringForPath:currentContentPath]];
+			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
 
 			currentSpineIndex++;
 			currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
 		}
 	} else { // Last chapter so iterate until the end.
 		while (currentSpineIndex < self.epubController.contentModel.spine.count) {
-			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self strippedStringForPath:currentContentPath]];
+			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
 
 			currentSpineIndex++;
 			if (currentSpineIndex == self.epubController.contentModel.spine.count) {
