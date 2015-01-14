@@ -81,6 +81,18 @@
     
     NSError *error = nil;
     NSString *content = [NSString stringWithContentsOfURL:rootFile encoding:NSUTF8StringEncoding error:&error];
+
+	if (content == nil) {
+		NSData *data = [NSData dataWithContentsOfFile:rootFile.path];
+		NSString *temp = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		if (temp == nil) {
+			[self.delegate epubController:self didFailWithError:error];
+			return;
+		} else {
+			content = temp;
+		}
+	}
+
     DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
     if (document)
     {
@@ -90,7 +102,7 @@
         self.contentModel.bookEncryption = [self.parser contentEncryptionForBaseURL:self.destinationURL];
         self.contentModel.metaData = [self.parser metaDataFromDocument:document];
         self.contentModel.coverPath = [self.parser coverPathComponentFromDocument:document];
-        
+
         if (!self.contentModel.metaData)
         {
             NSError *error = [NSError errorWithDomain:KFEpubKitErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey: @"No meta data found"}];
@@ -107,7 +119,9 @@
                 [self.delegate epubController:self didOpenEpub:self.contentModel];
             }
         }
-    }
+	} else {
+		[self.delegate epubController:self didFailWithError:error];
+	}
 }
 
 

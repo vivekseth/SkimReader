@@ -82,7 +82,7 @@
 		[delegate zipArchiveWillUnzipArchiveAtPath:path zipInfo:globalInfo];
 	}
 	if ([delegate respondsToSelector:@selector(zipArchiveProgressEvent:total:)]) {
-		[delegate zipArchiveProgressEvent:currentPosition total:fileSize];
+		[delegate zipArchiveProgressEvent:(NSInteger)currentPosition total:(NSInteger)fileSize];
 	}
 
 	NSInteger currentFileNumber = 0;
@@ -118,7 +118,7 @@
 											 archivePath:path fileInfo:fileInfo];
 			}
 			if ([delegate respondsToSelector:@selector(zipArchiveProgressEvent:total:)]) {
-				[delegate zipArchiveProgressEvent:currentPosition total:fileSize];
+				[delegate zipArchiveProgressEvent:(NSInteger)currentPosition total:(NSInteger)fileSize];
 			}
 
 			char *filename = (char *)malloc(fileInfo.size_filename + 1);
@@ -294,7 +294,7 @@
 	}
 	// final progress event = 100%
 	if ([delegate respondsToSelector:@selector(zipArchiveProgressEvent:total:)]) {
-		[delegate zipArchiveProgressEvent:fileSize total:fileSize];
+		[delegate zipArchiveProgressEvent:(NSInteger)fileSize total:(NSInteger)fileSize];
 	}
 
 	return success;
@@ -378,7 +378,7 @@
 
 - (void)zipInfo:(zip_fileinfo*)zipInfo setDate:(NSDate*)date {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-    uint flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    uint flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     NSDateComponents *components = [currentCalendar components:flags fromDate:date];
     zipInfo->tmz_date.tm_sec = (unsigned int)components.second;
     zipInfo->tmz_date.tm_min = (unsigned int)components.minute;
@@ -506,7 +506,7 @@
 	static NSCalendar *gregorian;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 	});
 
     NSDateComponents *components = [[NSDateComponents alloc] init];

@@ -11,8 +11,11 @@
 
 @interface VSSpritzLabel : UIView <VSSpritzView>
 
-- (void)setWord:(NSString *)word pivotCharacterIndex:(NSInteger)pivotCharacterIndex;
+@property (nonatomic, strong) UIView *crosshairView;
 
-- (void)beginStartAnimationWithCompletion:(void(^)(BOOL finished))completion;
+@property (nonatomic, strong) UIView *containerView;
+
+@property (nonatomic, strong) UIFont *font;
 
 @end
+

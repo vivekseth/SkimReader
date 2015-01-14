@@ -63,5 +63,4 @@
 
 - (void)openAsynchronous:(BOOL)asynchronous;
 
-
 @end
