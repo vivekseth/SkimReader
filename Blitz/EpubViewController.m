@@ -12,7 +12,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import "NSString+HTML.h"
-#import "SkimReaderViewController.h"
+#import "BlitzViewController.h"
 #import "EpubTOCExtractor.h"
 #import "EpubChapterListing.h"
 

@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		483D4AEB52E2E8D327A68D70 /* libPods-SkimReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB9603B4672F2C153B55E16 /* libPods-SkimReader.a */; };
+		0A74D88A9379DE7E8814DC6A /* libPods-Blitz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C3889FCED33AF89381FD6A /* libPods-Blitz.a */; };
+		483D4AEB52E2E8D327A68D70 /* libPods-Blitz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB9603B4672F2C153B55E16 /* libPods-Blitz.a */; };
 		581E53151A4F3DE800DFB55E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53141A4F3DE800DFB55E /* main.m */; };
 		581E53181A4F3DE800DFB55E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53171A4F3DE800DFB55E /* AppDelegate.m */; };
 		581E531B1A4F3DE800DFB55E /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E531A1A4F3DE800DFB55E /* DocumentViewController.m */; };
 		581E53201A4F3DE800DFB55E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 581E531F1A4F3DE800DFB55E /* Images.xcassets */; };
 		581E53231A4F3DE800DFB55E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 581E53211A4F3DE800DFB55E /* LaunchScreen.xib */; };
-		581E532F1A4F3DE800DFB55E /* SkimReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E532E1A4F3DE800DFB55E /* SkimReaderTests.m */; };
 		581E533B1A4F576900DFB55E /* EpubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E533A1A4F576900DFB55E /* EpubViewController.m */; };
 		581E533F1A4F71CC00DFB55E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581E531C1A4F3DE800DFB55E /* MainStoryboard.storyboard */; };
 		581E53481A4F765200DFB55E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 581E53421A4F765200DFB55E /* .gitignore */; };
 		581E53491A4F765200DFB55E /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53451A4F765200DFB55E /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581E534A1A4F765200DFB55E /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53471A4F765200DFB55E /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		581E534E1A4F786D00DFB55E /* SkimReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E534D1A4F786D00DFB55E /* SkimReaderViewController.m */; };
+		581E534E1A4F786D00DFB55E /* BlitzViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E534D1A4F786D00DFB55E /* BlitzViewController.m */; };
 		5830F2F01A504EE700D277AB /* icon-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EB1A504EE700D277AB /* icon-pause.png */; };
 		5830F2F11A504EE700D277AB /* icon-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EC1A504EE700D277AB /* icon-play.png */; };
 		5830F2F21A504EE700D277AB /* icon-restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2ED1A504EE700D277AB /* icon-restart.png */; };
@@ -30,18 +30,8 @@
 		58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		581E53291A4F3DE800DFB55E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 581E53071A4F3DE800DFB55E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 581E530E1A4F3DE800DFB55E;
-			remoteInfo = SkimReader;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		188F37B696074E5BDC9E260D /* Pods-SkimReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkimReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkimReader/Pods-SkimReader.debug.xcconfig"; sourceTree = "<group>"; };
+		188F37B696074E5BDC9E260D /* Pods-Blitz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz/Pods-Blitz.debug.xcconfig"; sourceTree = "<group>"; };
 		581E530F1A4F3DE800DFB55E /* Blitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581E53131A4F3DE800DFB55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		581E53141A4F3DE800DFB55E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,9 +42,8 @@
 		581E531D1A4F3DE800DFB55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		581E531F1A4F3DE800DFB55E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		581E53221A4F3DE800DFB55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		581E53281A4F3DE800DFB55E /* BlitzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlitzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		581E532D1A4F3DE800DFB55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		581E532E1A4F3DE800DFB55E /* SkimReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkimReaderTests.m; sourceTree = "<group>"; };
+		581E532E1A4F3DE800DFB55E /* BlitzTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlitzTests.m; sourceTree = "<group>"; };
 		581E53391A4F576900DFB55E /* EpubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubViewController.h; sourceTree = "<group>"; };
 		581E533A1A4F576900DFB55E /* EpubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubViewController.m; sourceTree = "<group>"; };
 		581E53421A4F765200DFB55E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -63,8 +52,8 @@
 		581E53451A4F765200DFB55E /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		581E53461A4F765200DFB55E /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		581E53471A4F765200DFB55E /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
-		581E534C1A4F786D00DFB55E /* SkimReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkimReaderViewController.h; sourceTree = "<group>"; };
-		581E534D1A4F786D00DFB55E /* SkimReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkimReaderViewController.m; sourceTree = "<group>"; };
+		581E534C1A4F786D00DFB55E /* BlitzViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzViewController.h; sourceTree = "<group>"; };
+		581E534D1A4F786D00DFB55E /* BlitzViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzViewController.m; sourceTree = "<group>"; };
 		5830F2EB1A504EE700D277AB /* icon-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-pause.png"; sourceTree = "<group>"; };
 		5830F2EC1A504EE700D277AB /* icon-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-play.png"; sourceTree = "<group>"; };
 		5830F2ED1A504EE700D277AB /* icon-restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-restart.png"; sourceTree = "<group>"; };
@@ -76,8 +65,15 @@
 		58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubTOCExtractor.m; sourceTree = "<group>"; };
 		58EACA831A5350CB00A77CB9 /* EpubChapterListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubChapterListing.h; sourceTree = "<group>"; };
 		58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubChapterListing.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		7C8AC752C5C532C826C81665 /* Pods-SkimReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkimReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkimReader/Pods-SkimReader.release.xcconfig"; sourceTree = "<group>"; };
 		8CB9603B4672F2C153B55E16 /* libPods-SkimReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SkimReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		58F5B7261A55C8B8002650F5 /* tcomc-1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tcomc-1.txt"; sourceTree = "<group>"; };
+		7C8AC752C5C532C826C81665 /* Pods-Blitz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz/Pods-Blitz.release.xcconfig"; sourceTree = "<group>"; };
+		8CB9603B4672F2C153B55E16 /* libPods-Blitz.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blitz.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99C3889FCED33AF89381FD6A /* libPods-Blitz.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blitz.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> 534482c... Completed name change
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,14 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				483D4AEB52E2E8D327A68D70 /* libPods-SkimReader.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		581E53251A4F3DE800DFB55E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				483D4AEB52E2E8D327A68D70 /* libPods-Blitz.a in Frameworks */,
+				0A74D88A9379DE7E8814DC6A /* libPods-Blitz.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +92,8 @@
 		0CA1A854528B416A5544170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8CB9603B4672F2C153B55E16 /* libPods-SkimReader.a */,
+				8CB9603B4672F2C153B55E16 /* libPods-Blitz.a */,
+				99C3889FCED33AF89381FD6A /* libPods-Blitz.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,8 +101,8 @@
 		581E53061A4F3DE800DFB55E = {
 			isa = PBXGroup;
 			children = (
-				581E53111A4F3DE800DFB55E /* SkimReader */,
-				581E532B1A4F3DE800DFB55E /* SkimReaderTests */,
+				581E53111A4F3DE800DFB55E /* Blitz */,
+				581E532B1A4F3DE800DFB55E /* BlitzTests */,
 				581E53101A4F3DE800DFB55E /* Products */,
 				5F3DC4923969D31481D12B0F /* Pods */,
 				0CA1A854528B416A5544170A /* Frameworks */,
@@ -122,12 +113,11 @@
 			isa = PBXGroup;
 			children = (
 				581E530F1A4F3DE800DFB55E /* Blitz.app */,
-				581E53281A4F3DE800DFB55E /* BlitzTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		581E53111A4F3DE800DFB55E /* SkimReader */ = {
+		581E53111A4F3DE800DFB55E /* Blitz */ = {
 			isa = PBXGroup;
 			children = (
 				5830F2EA1A504EE700D277AB /* Button Icons */,
@@ -142,7 +132,7 @@
 				581E53211A4F3DE800DFB55E /* LaunchScreen.xib */,
 				581E53121A4F3DE800DFB55E /* Supporting Files */,
 			);
-			path = SkimReader;
+			path = Blitz;
 			sourceTree = "<group>";
 		};
 		581E53121A4F3DE800DFB55E /* Supporting Files */ = {
@@ -154,13 +144,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		581E532B1A4F3DE800DFB55E /* SkimReaderTests */ = {
+		581E532B1A4F3DE800DFB55E /* BlitzTests */ = {
 			isa = PBXGroup;
 			children = (
-				581E532E1A4F3DE800DFB55E /* SkimReaderTests.m */,
+				581E532E1A4F3DE800DFB55E /* BlitzTests.m */,
 				581E532C1A4F3DE800DFB55E /* Supporting Files */,
 			);
-			path = SkimReaderTests;
+			path = BlitzTests;
 			sourceTree = "<group>";
 		};
 		581E532C1A4F3DE800DFB55E /* Supporting Files */ = {
@@ -231,8 +221,8 @@
 		58EACA7F1A534EC700A77CB9 /* Blitz VIew */ = {
 			isa = PBXGroup;
 			children = (
-				581E534C1A4F786D00DFB55E /* SkimReaderViewController.h */,
-				581E534D1A4F786D00DFB55E /* SkimReaderViewController.m */,
+				581E534C1A4F786D00DFB55E /* BlitzViewController.h */,
+				581E534D1A4F786D00DFB55E /* BlitzViewController.m */,
 			);
 			name = "Blitz VIew";
 			sourceTree = "<group>";
@@ -240,8 +230,8 @@
 		5F3DC4923969D31481D12B0F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				188F37B696074E5BDC9E260D /* Pods-SkimReader.debug.xcconfig */,
-				7C8AC752C5C532C826C81665 /* Pods-SkimReader.release.xcconfig */,
+				188F37B696074E5BDC9E260D /* Pods-Blitz.debug.xcconfig */,
+				7C8AC752C5C532C826C81665 /* Pods-Blitz.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -264,27 +254,9 @@
 			dependencies = (
 			);
 			name = Blitz;
-			productName = SkimReader;
+			productName = Blitz;
 			productReference = 581E530F1A4F3DE800DFB55E /* Blitz.app */;
 			productType = "com.apple.product-type.application";
-		};
-		581E53271A4F3DE800DFB55E /* BlitzTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 581E53351A4F3DE800DFB55E /* Build configuration list for PBXNativeTarget "BlitzTests" */;
-			buildPhases = (
-				581E53241A4F3DE800DFB55E /* Sources */,
-				581E53251A4F3DE800DFB55E /* Frameworks */,
-				581E53261A4F3DE800DFB55E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				581E532A1A4F3DE800DFB55E /* PBXTargetDependency */,
-			);
-			name = BlitzTests;
-			productName = SkimReaderTests;
-			productReference = 581E53281A4F3DE800DFB55E /* BlitzTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -297,10 +269,6 @@
 				TargetAttributes = {
 					581E530E1A4F3DE800DFB55E = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					581E53271A4F3DE800DFB55E = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 581E530E1A4F3DE800DFB55E;
 					};
 				};
 			};
@@ -318,7 +286,6 @@
 			projectRoot = "";
 			targets = (
 				581E530E1A4F3DE800DFB55E /* Blitz */,
-				581E53271A4F3DE800DFB55E /* BlitzTests */,
 			);
 		};
 /* End PBXProject section */
@@ -337,13 +304,6 @@
 				5830F2F31A504EE700D277AB /* icon-skip-backwards.png in Resources */,
 				5830F2F41A504EE700D277AB /* icon-skip-forward.png in Resources */,
 				5830F2F01A504EE700D277AB /* icon-pause.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		581E53261A4F3DE800DFB55E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkimReader/Pods-SkimReader-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Blitz/Pods-Blitz-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -389,7 +349,7 @@
 			files = (
 				58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */,
 				581E531B1A4F3DE800DFB55E /* DocumentViewController.m in Sources */,
-				581E534E1A4F786D00DFB55E /* SkimReaderViewController.m in Sources */,
+				581E534E1A4F786D00DFB55E /* BlitzViewController.m in Sources */,
 				581E53181A4F3DE800DFB55E /* AppDelegate.m in Sources */,
 				5830F32D1A517CC800D277AB /* EpubDownloadController.m in Sources */,
 				581E53491A4F765200DFB55E /* GTMNSString+HTML.m in Sources */,
@@ -400,23 +360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		581E53241A4F3DE800DFB55E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				581E532F1A4F3DE800DFB55E /* SkimReaderTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		581E532A1A4F3DE800DFB55E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 581E530E1A4F3DE800DFB55E /* Blitz */;
-			targetProxy = 581E53291A4F3DE800DFB55E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		581E531C1A4F3DE800DFB55E /* MainStoryboard.storyboard */ = {
@@ -516,10 +460,10 @@
 		};
 		581E53331A4F3DE800DFB55E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 188F37B696074E5BDC9E260D /* Pods-SkimReader.debug.xcconfig */;
+			baseConfigurationReference = 188F37B696074E5BDC9E260D /* Pods-Blitz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SkimReader/Info.plist;
+				INFOPLIST_FILE = Blitz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Blitz;
@@ -528,47 +472,13 @@
 		};
 		581E53341A4F3DE800DFB55E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C8AC752C5C532C826C81665 /* Pods-SkimReader.release.xcconfig */;
+			baseConfigurationReference = 7C8AC752C5C532C826C81665 /* Pods-Blitz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SkimReader/Info.plist;
+				INFOPLIST_FILE = Blitz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Blitz;
-			};
-			name = Release;
-		};
-		581E53361A4F3DE800DFB55E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SkimReaderTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = BlitzTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkimReader.app/SkimReader";
-			};
-			name = Debug;
-		};
-		581E53371A4F3DE800DFB55E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SkimReaderTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = BlitzTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkimReader.app/SkimReader";
 			};
 			name = Release;
 		};
@@ -589,15 +499,6 @@
 			buildConfigurations = (
 				581E53331A4F3DE800DFB55E /* Debug */,
 				581E53341A4F3DE800DFB55E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		581E53351A4F3DE800DFB55E /* Build configuration list for PBXNativeTarget "BlitzTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				581E53361A4F3DE800DFB55E /* Debug */,
-				581E53371A4F3DE800DFB55E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

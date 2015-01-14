@@ -9,7 +9,4 @@ target 'Blitz' do
     pod 'MBProgressHUD', '~> 0.9'
 end
 
-target 'SkimReaderTests' do
-
-end
 

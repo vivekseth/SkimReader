@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Vivek Seth. All rights reserved.
 //
 
-#import "SkimReaderViewController.h"
+#import "BlitzViewController.h"
 
 static const NSInteger defaultWPM = 300;
 
