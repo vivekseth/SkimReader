@@ -15,6 +15,9 @@
 
 @implementation AppDelegate
 
++ (UIColor *) blitzTintColor {
+	return [UIColor colorWithRed:244.0/255.0 green:134.0/255.0 blue:25.0/255.0 alpha:1.0];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.

@@ -14,6 +14,7 @@
 
 #import "EpubViewController.h"
 #import "EpubDownloadController.h"
+#import "AppDelegate.h"
 
 @interface DocumentViewController () <EpubDownloadControllerDelegate>
 
@@ -36,6 +37,12 @@
 	[self loadEpubsFromDisk];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	// this UIViewController is about to re-appear, make sure we remove the current selection in our table view
+	NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
+	[self.tableView deselectRowAtIndexPath:tableSelection animated:YES];
+}
+
 #pragma mark - UITableView Stuff
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -43,9 +50,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileTableViewCell"];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FileTableViewCell"];
+	}
+
 	KFEpubController *epubController = self.epubControllerArray[indexPath.row];
+
 	cell.textLabel.text = epubController.contentModel.metaData[@"title"];
+	// Orange Highlight
+	cell.selectedBackgroundView = [UIView new];
+	cell.selectedBackgroundView.backgroundColor = [AppDelegate blitzTintColor];
+	cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+
 	return cell;
 }
 

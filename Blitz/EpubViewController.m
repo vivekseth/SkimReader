@@ -16,6 +16,8 @@
 #import "EpubTOCExtractor.h"
 #import "EpubChapterListing.h"
 
+#import "AppDelegate.h"
+
 @interface EpubViewController ()
 
 @property (nonatomic, strong) NSArray *chapterListings;
@@ -30,6 +32,12 @@
 	self.chapterListings = [EpubTOCExtractor flattenedChapterArray:[EpubTOCExtractor chaptersForEpubController:self.epubController]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	// this UIViewController is about to re-appear, make sure we remove the current selection in our table view
+	NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
+	[self.tableView deselectRowAtIndexPath:tableSelection animated:YES];
+}
+
 #pragma mark - UITableView Stuff
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -39,11 +47,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EpubTableViewCell"];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"EpubTableViewCell"];
+	}
+
 	EpubChapterListing *chapterListing = self.chapterListings[indexPath.row];
 
 	cell.textLabel.text = chapterListing.title;
 	cell.indentationWidth = 20;
 	cell.indentationLevel = chapterListing.level;
+
+	// Orange Highlight
+	cell.selectedBackgroundView = [UIView new];
+	cell.selectedBackgroundView.backgroundColor = [AppDelegate blitzTintColor];
+	cell.textLabel.highlightedTextColor = [UIColor whiteColor];
 
 	return cell;
 

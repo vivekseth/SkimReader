@@ -27,6 +27,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Library" id="3BN-7l-EWE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2nq-8F-bim">
+                            <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="dropboxButtonTapped:" destination="Uqr-0i-b7e" id="v8s-4W-sAu"/>
                             </connections>
@@ -78,6 +79,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfS-rS-dVl" customClass="VSSpritzLabel">
                                 <rect key="frame" x="173" y="40" width="255" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="AM8-y1-3nE"/>
                                     <constraint firstAttribute="width" constant="255" id="MV2-qL-1dw"/>
@@ -89,6 +91,9 @@
                                     <constraint firstAttribute="height" constant="30" id="KTB-fL-EVM"/>
                                     <constraint firstAttribute="width" constant="255" id="xkN-Xo-Fxf"/>
                                 </constraints>
+                                <color key="minimumTrackTintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="maximumTrackTintColor" white="0.93208912040000003" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="thumbTintColor" white="0.93208912040000003" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="wpmSliderValueDidChange:" destination="ln7-PN-C2z" eventType="valueChanged" id="aGw-MF-fRS"/>
                                 </connections>
@@ -100,6 +105,7 @@
                                     <constraint firstAttribute="width" constant="45" id="E01-eU-1D0"/>
                                     <constraint firstAttribute="height" constant="45" id="Gy5-LO-gPr"/>
                                 </constraints>
+                                <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Play" image="icon-play.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -116,6 +122,7 @@
                                     <constraint firstAttribute="width" constant="45" id="IDi-h7-tZi"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="zit-1Y-vM7"/>
                                 </constraints>
+                                <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Back" image="icon-skip-backwards.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -138,6 +145,7 @@
                                     <constraint firstAttribute="width" constant="45" id="qUu-ml-bT6"/>
                                     <constraint firstAttribute="height" constant="45" id="zcw-iO-01x"/>
                                 </constraints>
+                                <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Forward" image="icon-skip-forward.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -150,6 +158,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="loG-gS-mqu"/>
                                 </constraints>
+                                <color key="progressTintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="trackTintColor" white="0.93208912037037039" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,6 +202,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0jr-o5-MK9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.52549019610000003" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Uqr-0i-b7e" kind="relationship" relationship="rootViewController" id="rs1-nQ-2Rb"/>

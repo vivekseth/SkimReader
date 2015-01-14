@@ -204,7 +204,7 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 }
 
 + (UIColor *)defaultTintColor {
-	return [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+	return [UIColor colorWithRed:244.0/255.0 green:134.0/255.0 blue:25.0/255.0 alpha:1.0];
 }
 
 #pragma mark - Public Methods
@@ -238,14 +238,14 @@ const CGFloat VSDarkGreyTextWhiteLevel = 0.55;
 
 - (void)beginStartAnimationWithCompletion:(void(^)(BOOL finished))completion {
 	UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pivotOffset, self.frame.size.height)];
-	leftView.backgroundColor = [UIColor blueColor];
+	leftView.backgroundColor = [self.class defaultTintColor];
 	leftView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:leftView];
 	CGRect toFrameLeftView = CGRectMake(self.pivotOffset, 0, 0, self.frame.size.height);
 
 
 	UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(self.pivotOffset, 0, (self.frame.size.width - self.pivotOffset), self.frame.size.height)];
-	rightView.backgroundColor = [UIColor blueColor];
+	rightView.backgroundColor = [self.class defaultTintColor];
 	rightView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:rightView];
 	CGRect toFrameRightView = CGRectMake(self.pivotOffset, 0, 0, self.frame.size.height);
