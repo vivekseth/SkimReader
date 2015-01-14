@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '6.0'
 
-target 'SkimReader' do
+target 'Blitz' do
     pod 'KFEpubKit', '0.0.6'
     pod 'VSSpritz', '~> 0.1.3'
     pod 'Dropbox-iOS-Dropins-SDK', '~> 1.2.1'

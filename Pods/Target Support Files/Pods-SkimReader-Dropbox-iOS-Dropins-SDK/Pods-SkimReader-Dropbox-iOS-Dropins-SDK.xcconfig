@@ -1,2 +1,0 @@
-PODS_SKIMREADER_DROPBOX_IOS_DROPINS_SDK_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Dropbox-iOS-Dropins-SDK/dropbox-ios-dropins-sdk-1.2.1"
-PODS_SKIMREADER_DROPBOX_IOS_DROPINS_SDK_OTHER_LDFLAGS = -framework "DBChooser" -framework "QuartzCore" -framework "Security"

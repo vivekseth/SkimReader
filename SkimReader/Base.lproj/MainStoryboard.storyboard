@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="617" y="-396"/>
         </scene>
-        <!--Skim-->
+        <!--Blitz-->
         <scene sceneID="XW0-uY-bp0">
             <objects>
-                <viewController storyboardIdentifier="SkimReaderViewController" title="Skim" id="ln7-PN-C2z" customClass="SkimReaderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SkimReaderViewController" title="Blitz" id="ln7-PN-C2z" customClass="SkimReaderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jQZ-T5-KQv"/>
                         <viewControllerLayoutGuide type="bottom" id="aQz-zt-tpb"/>
