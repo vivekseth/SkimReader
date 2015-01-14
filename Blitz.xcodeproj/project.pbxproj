@@ -26,6 +26,8 @@
 		5830F2F31A504EE700D277AB /* icon-skip-backwards.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EE1A504EE700D277AB /* icon-skip-backwards.png */; };
 		5830F2F41A504EE700D277AB /* icon-skip-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EF1A504EE700D277AB /* icon-skip-forward.png */; };
 		5830F32D1A517CC800D277AB /* EpubDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5830F32C1A517CC800D277AB /* EpubDownloadController.m */; };
+		585DBFBD1A6728E50019444A /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 585DBFBC1A6728E50019444A /* Logo.png */; };
+		585DBFC11A672C160019444A /* Logo-Transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 585DBFC01A672C160019444A /* Logo-Transparent.png */; };
 		58EACA821A534F1A00A77CB9 /* EpubTOCExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */; };
 		58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EACA841A5350CB00A77CB9 /* EpubChapterListing.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		5830F2EF1A504EE700D277AB /* icon-skip-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-skip-forward.png"; sourceTree = "<group>"; };
 		5830F32B1A517CC800D277AB /* EpubDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubDownloadController.h; sourceTree = "<group>"; };
 		5830F32C1A517CC800D277AB /* EpubDownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubDownloadController.m; sourceTree = "<group>"; };
+		585DBFBC1A6728E50019444A /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		585DBFC01A672C160019444A /* Logo-Transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Transparent.png"; sourceTree = "<group>"; };
 		58EACA801A534F1A00A77CB9 /* EpubTOCExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubTOCExtractor.h; sourceTree = "<group>"; };
 		58EACA811A534F1A00A77CB9 /* EpubTOCExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpubTOCExtractor.m; sourceTree = "<group>"; };
 		58EACA831A5350CB00A77CB9 /* EpubChapterListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpubChapterListing.h; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 		581E53111A4F3DE800DFB55E /* Blitz */ = {
 			isa = PBXGroup;
 			children = (
+				585DBFC01A672C160019444A /* Logo-Transparent.png */,
+				585DBFBC1A6728E50019444A /* Logo.png */,
 				5830F2EA1A504EE700D277AB /* Button Icons */,
 				5830F32E1A5185FD00D277AB /* Categories */,
 				581E53161A4F3DE800DFB55E /* AppDelegate.h */,
@@ -291,12 +297,14 @@
 			files = (
 				581E53481A4F765200DFB55E /* .gitignore in Resources */,
 				581E533F1A4F71CC00DFB55E /* MainStoryboard.storyboard in Resources */,
+				585DBFBD1A6728E50019444A /* Logo.png in Resources */,
 				581E53231A4F3DE800DFB55E /* LaunchScreen.xib in Resources */,
 				581E53201A4F3DE800DFB55E /* Images.xcassets in Resources */,
 				5830F2F21A504EE700D277AB /* icon-restart.png in Resources */,
 				5830F2F11A504EE700D277AB /* icon-play.png in Resources */,
 				5830F2F31A504EE700D277AB /* icon-skip-backwards.png in Resources */,
 				5830F2F41A504EE700D277AB /* icon-skip-forward.png in Resources */,
+				585DBFC11A672C160019444A /* Logo-Transparent.png in Resources */,
 				5830F2F01A504EE700D277AB /* icon-pause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
