@@ -132,6 +132,8 @@
 			  didFailWithError:(NSError *)error {
 	NSLog(@"error :(");
 	[MBProgressHUD hideHUDForView:self.view animated:YES];
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Unable to parse epub file." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+	[alertView show];
 }
 
 
