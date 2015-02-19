@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B9DE7D3F040BC0540C333425"
+               BlueprintIdentifier = "0B54AC8A2D092D1405CDE8EC"
                BuildableName = "libPods-Blitz-KFEpubKit.a"
                BlueprintName = "Pods-Blitz-KFEpubKit"
                ReferencedContainer = "container:Pods.xcodeproj">

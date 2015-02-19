@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Blitz-HTMLReader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Blitz-KFEpubKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +35,11 @@
 			<false/>
 		</dict>
 		<key>Pods-Blitz-SSZipArchive.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Blitz-TOWebViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>14B29DD19DC81A00EC42A2DE</key>
+		<key>0B54AC8A2D092D1405CDE8EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>157E2D3C3471B5615080E0FF</key>
+		<key>164040B178A0A0ACC8FC8B4E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4538057100623C1E7BB11D0B</key>
+		<key>310A1936ECB7B769D1CEBFCB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CDB371A3CBEBBDA04C5251A</key>
+		<key>3539ED38CB584637D3C3B461</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C5C6B93724D1CCF7EAA0075</key>
+		<key>35F6A5E228FE644FABE56337</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F3CFB8992B257311CBDBD36</key>
+		<key>441C2D90ED6924952090882C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A323DD363E4BCB8FBF67F86F</key>
+		<key>5BA8E3626F95C6420F64E88C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9DE7D3F040BC0540C333425</key>
+		<key>712EEB9E09B2A7D5AA5F9B69</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EEE48883044FA0C0DEF39B3B</key>
+		<key>7EEF4879C6AFAA5280BBE06E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BF0C86E7E70D2E651C6FBD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DD0CA86E2DA9F1899B0E5DFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

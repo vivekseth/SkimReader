@@ -38,6 +38,87 @@
             </objects>
             <point key="canvasLocation" x="-139" y="-396"/>
         </scene>
+        <!--Add Epub-->
+        <scene sceneID="BDd-KO-Qux">
+            <objects>
+                <viewController id="hoD-oZ-w4i" customClass="AddDocumentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ntf-vc-NGG"/>
+                        <viewControllerLayoutGuide type="bottom" id="aG2-hL-ust"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yPR-XE-UIa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RM-5H-vFg">
+                                <rect key="frame" x="290" y="288" width="21" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsI-Gg-cnN">
+                                <rect key="frame" x="177" y="166" width="247" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Project Gutenberg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapGutenbergButton:" destination="hoD-oZ-w4i" eventType="touchUpInside" id="Lst-2c-5VL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg6-FE-FWH">
+                                <rect key="frame" x="241" y="372" width="118" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Dropbox">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapDropboxButton:" destination="hoD-oZ-w4i" eventType="touchUpInside" id="LpR-k8-egW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="YsI-Gg-cnN" secondAttribute="centerX" id="Xzc-VG-BPL"/>
+                            <constraint firstItem="Yg6-FE-FWH" firstAttribute="top" secondItem="0RM-5H-vFg" secondAttribute="bottom" constant="61" id="izt-Qb-cpj"/>
+                            <constraint firstAttribute="centerY" secondItem="0RM-5H-vFg" secondAttribute="centerY" id="rh2-0i-5GW"/>
+                            <constraint firstItem="0RM-5H-vFg" firstAttribute="top" secondItem="YsI-Gg-cnN" secondAttribute="bottom" constant="73" id="vEq-nS-iBx"/>
+                            <constraint firstAttribute="centerX" secondItem="0RM-5H-vFg" secondAttribute="centerX" id="vFn-cC-Dwr"/>
+                            <constraint firstAttribute="centerX" secondItem="Yg6-FE-FWH" secondAttribute="centerX" id="wvv-pF-V9R"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Epub" id="SLd-75-3Wf">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="27H-8V-0Ff">
+                            <connections>
+                                <action selector="didTapDoneButton:" destination="hoD-oZ-w4i" id="fHq-aZ-099"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dropboxButton" destination="Yg6-FE-FWH" id="KFP-NT-Vyb"/>
+                        <outlet property="gutenbergButton" destination="YsI-Gg-cnN" id="zub-Xt-9rt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FvW-hd-Rkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-139" y="368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6OO-fq-dSh">
+            <objects>
+                <navigationController storyboardIdentifier="AddDocumentViewController" id="lkq-zv-hOn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rdo-eU-Qyw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hoD-oZ-w4i" kind="relationship" relationship="rootViewController" id="7q5-5R-4Co"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OK4-E7-flG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-975" y="368"/>
+        </scene>
         <!--Chapters-->
         <scene sceneID="jaD-75-DRB">
             <objects>

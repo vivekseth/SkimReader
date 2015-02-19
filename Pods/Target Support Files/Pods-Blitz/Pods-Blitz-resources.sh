@@ -48,6 +48,14 @@ install_resource()
   esac
 }
           install_resource "Dropbox-iOS-Dropins-SDK/dropbox-ios-dropins-sdk-1.2.1/DBChooser.bundle"
+                    install_resource "TOWebViewController/TOWebViewController/de.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/en.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/es.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/ja.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/ko.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/pl.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/zh-Hans.lproj"
+                    install_resource "TOWebViewController/TOWebViewController/zh-Hant.lproj"
                     install_resource "${BUILT_PRODUCTS_DIR}/VSSpritz.bundle"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

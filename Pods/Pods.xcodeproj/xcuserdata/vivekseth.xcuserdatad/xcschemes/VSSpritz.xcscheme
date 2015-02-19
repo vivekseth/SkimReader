@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EEE48883044FA0C0DEF39B3B"
+               BlueprintIdentifier = "441C2D90ED6924952090882C"
                BuildableName = "VSSpritz.bundle"
                BlueprintName = "VSSpritz"
                ReferencedContainer = "container:Pods.xcodeproj">

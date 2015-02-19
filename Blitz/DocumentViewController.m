@@ -14,6 +14,7 @@
 
 #import "EpubViewController.h"
 #import "EpubDownloadController.h"
+#import "AddDocumentViewController.h"
 #import "AppDelegate.h"
 
 @interface DocumentViewController () <EpubDownloadControllerDelegate>
@@ -23,7 +24,7 @@
 // Used to conditionally reload tableview on each -epubDownloadController:didParseEpub: delegate call.
 // This has potential to cause race conditions.
 @property (nonatomic) BOOL isSynchronouslyFindingEpubs;
-
+@property (nonatomic) BOOL didDisplayModalAddDocumentViewController;
 @end
 
 @implementation DocumentViewController
@@ -38,6 +39,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	if (self.didDisplayModalAddDocumentViewController) {
+		[self loadEpubsFromDisk];
+		self.didDisplayModalAddDocumentViewController = NO;
+	}
+
 	// this UIViewController is about to re-appear, make sure we remove the current selection in our table view
 	NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
 	[self.tableView deselectRowAtIndexPath:tableSelection animated:YES];
@@ -98,22 +104,28 @@
 #pragma mark - Button Handlers
 
 - (IBAction)dropboxButtonTapped:(id)sender {
-	[[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypeDirect
-									fromViewController:self completion:^(NSArray *results) {
-		 if ([results count]) {
-			 // Explicitly set to NO to ensure tableView is reloaded after data comes.
-			 self.isSynchronouslyFindingEpubs = NO;
-			 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-			 [results enumerateObjectsUsingBlock:^(DBChooserResult *res, NSUInteger idx, BOOL *stop) {
-				 self.downloadController = [EpubDownloadController new];
-				 self.downloadController.delegate = self;
-				 [self.downloadController asyncDownloadAndParseEpubFromURL:res.link];
-			 }];
-		 } else {
-			 // User canceled the action
-			 NSLog(@"cancel");
-		 }
-	 }];
+	AddDocumentViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"AddDocumentViewController"];
+	self.didDisplayModalAddDocumentViewController = YES;
+	[self presentViewController:vc animated:YES completion:^{
+		NSLog(@"done presenting");
+	}];
+
+//	[[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypeDirect
+//									fromViewController:self completion:^(NSArray *results) {
+//		 if ([results count]) {
+//			 // Explicitly set to NO to ensure tableView is reloaded after data comes.
+//			 self.isSynchronouslyFindingEpubs = NO;
+//			 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//			 [results enumerateObjectsUsingBlock:^(DBChooserResult *res, NSUInteger idx, BOOL *stop) {
+//				 self.downloadController = [EpubDownloadController new];
+//				 self.downloadController.delegate = self;
+//				 [self.downloadController asyncDownloadAndParseEpubFromURL:res.link];
+//			 }];
+//		 } else {
+//			 // User canceled the action
+//			 NSLog(@"cancel");
+//		 }
+//	 }];
 }
 
 #pragma mark - EpubDownloadControllerDelegate

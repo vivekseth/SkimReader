@@ -20,6 +20,7 @@
 		581E53491A4F765200DFB55E /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53451A4F765200DFB55E /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581E534A1A4F765200DFB55E /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E53471A4F765200DFB55E /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581E534E1A4F786D00DFB55E /* BlitzViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581E534D1A4F786D00DFB55E /* BlitzViewController.m */; };
+		5824A08E1A953DD000EFF538 /* AddDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5824A08D1A953DD000EFF538 /* AddDocumentViewController.m */; };
 		5830F2F01A504EE700D277AB /* icon-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EB1A504EE700D277AB /* icon-pause.png */; };
 		5830F2F11A504EE700D277AB /* icon-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2EC1A504EE700D277AB /* icon-play.png */; };
 		5830F2F21A504EE700D277AB /* icon-restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5830F2ED1A504EE700D277AB /* icon-restart.png */; };
@@ -56,6 +57,8 @@
 		581E53471A4F765200DFB55E /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		581E534C1A4F786D00DFB55E /* BlitzViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzViewController.h; sourceTree = "<group>"; };
 		581E534D1A4F786D00DFB55E /* BlitzViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzViewController.m; sourceTree = "<group>"; };
+		5824A08C1A953DD000EFF538 /* AddDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDocumentViewController.h; sourceTree = "<group>"; };
+		5824A08D1A953DD000EFF538 /* AddDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDocumentViewController.m; sourceTree = "<group>"; };
 		5830F2EB1A504EE700D277AB /* icon-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-pause.png"; sourceTree = "<group>"; };
 		5830F2EC1A504EE700D277AB /* icon-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-play.png"; sourceTree = "<group>"; };
 		5830F2ED1A504EE700D277AB /* icon-restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-restart.png"; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 				58EACA7F1A534EC700A77CB9 /* Blitz VIew */,
 				58EACA7E1A534EBF00A77CB9 /* Chapter View */,
 				58EACA7D1A534EAD00A77CB9 /* Document View */,
+				5824A08B1A953D2E00EFF538 /* Add Document View */,
 				581E531C1A4F3DE800DFB55E /* MainStoryboard.storyboard */,
 				581E531F1A4F3DE800DFB55E /* Images.xcassets */,
 				581E53211A4F3DE800DFB55E /* LaunchScreen.xib */,
@@ -172,6 +176,15 @@
 				581E53471A4F765200DFB55E /* NSString+HTML.m */,
 			);
 			path = "GTMNSString-HTML";
+			sourceTree = "<group>";
+		};
+		5824A08B1A953D2E00EFF538 /* Add Document View */ = {
+			isa = PBXGroup;
+			children = (
+				5824A08C1A953DD000EFF538 /* AddDocumentViewController.h */,
+				5824A08D1A953DD000EFF538 /* AddDocumentViewController.m */,
+			);
+			name = "Add Document View";
 			sourceTree = "<group>";
 		};
 		5830F2EA1A504EE700D277AB /* Button Icons */ = {
@@ -352,6 +365,7 @@
 				58EACA851A5350CB00A77CB9 /* EpubChapterListing.m in Sources */,
 				581E531B1A4F3DE800DFB55E /* DocumentViewController.m in Sources */,
 				581E534E1A4F786D00DFB55E /* BlitzViewController.m in Sources */,
+				5824A08E1A953DD000EFF538 /* AddDocumentViewController.m in Sources */,
 				581E53181A4F3DE800DFB55E /* AppDelegate.m in Sources */,
 				5830F32D1A517CC800D277AB /* EpubDownloadController.m in Sources */,
 				581E53491A4F765200DFB55E /* GTMNSString+HTML.m in Sources */,

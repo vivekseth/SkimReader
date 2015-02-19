@@ -4,5 +4,7 @@ target 'Blitz' do
     pod 'Dropbox-iOS-Dropins-SDK', '~> 1.2.1'
     pod 'AFNetworking', '~> 2.5.0'
     pod 'MBProgressHUD', '~> 0.9'
+    pod 'TOWebViewController', '~> 2.0.14'
+    pod 'HTMLReader', '~> 0.6.1'
 end
 

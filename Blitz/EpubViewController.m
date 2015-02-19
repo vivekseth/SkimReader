@@ -10,6 +10,7 @@
 
 #import <KFEpubKit/KFEpubKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <HTMLReader/HTMLReader.h>
 
 #import "NSString+HTML.h"
 #import "BlitzViewController.h"
@@ -98,30 +99,118 @@
 	NSString *fullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex] path]];
 	NSString *strippedString = @"";
 
-	NSInteger currentSpineIndex = 0;
-	NSString *currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
-	while (![fullContentPath hasPrefix:currentContentPath]) {
-		currentSpineIndex++;
-		currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+	// Epub using IDs to indicate chapters
+	NSArray *fullContentPathParts = [fullContentPath componentsSeparatedByString:@"#"];
+	if (fullContentPathParts.count > 1) {
+		NSString *fullContentPathNextChapter = nil;
+		if (chapterIndex + 1 < self.chapterListings.count) {
+			fullContentPathNextChapter = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex + 1] path]];
+		}
+
+		NSString *currentChapterXMLFilePath = fullContentPathParts[0];
+		NSString *currentChapterXMLIDString = fullContentPathParts[1];
+		NSString *contentString = [NSString stringWithContentsOfFile:currentChapterXMLFilePath encoding:NSUTF8StringEncoding error:nil];
+
+		// Not the last chapter
+		if (fullContentPathNextChapter) {
+			NSArray *fullContentPathPartsNextChapter = [fullContentPathNextChapter componentsSeparatedByString:@"#"];
+
+			// next chapter has id and is in the same page.
+			if (fullContentPathPartsNextChapter.count > 1 && [currentChapterXMLFilePath isEqualToString:fullContentPathPartsNextChapter[0]]) {
+				NSString *nextChapterXMLIDString = fullContentPathPartsNextChapter[1];
+
+				HTMLDocument *document = [HTMLDocument documentWithString:contentString];
+				HTMLNode *startNode = [document firstNodeMatchingSelector:[NSString stringWithFormat:@"#%@", currentChapterXMLIDString]];
+				HTMLNode *endNode = [document firstNodeMatchingSelector:[NSString stringWithFormat:@"#%@", nextChapterXMLIDString]];
+
+				NSString *documentTextContent = [document textContent];
+				NSString *startNodeTextContent = [startNode textContent];
+				NSString *endNodeTextContent = [endNode textContent];
+
+				NSArray * componentsSplitByStart = [documentTextContent componentsSeparatedByString:startNodeTextContent];
+				// yay it worked!
+				if (componentsSplitByStart.count == 2) {
+					NSArray * componentsFromLastStartComponentSplitByEnd = [componentsSplitByStart[1] componentsSeparatedByString:endNodeTextContent];
+					if (componentsFromLastStartComponentSplitByEnd.count == 2) {
+						return [NSString stringWithFormat:@"%@ %@ %@", startNodeTextContent, componentsFromLastStartComponentSplitByEnd[0], endNodeTextContent];
+					} else {
+						return [NSString stringWithFormat:@"%@ %@", startNodeTextContent, componentsSplitByStart[1]];
+					}
+				}
+
+				return documentTextContent;
+			}
+
+			// next chapter does not have id or is not in the same page.
+			else {
+				HTMLDocument *document = [HTMLDocument documentWithString:contentString];
+				HTMLNode *node = [document firstNodeMatchingSelector:[NSString stringWithFormat:@"#%@", currentChapterXMLIDString]];
+
+				NSString *documentTextContent = [document textContent];
+				NSString *startNodeTextContent = [node textContent];
+
+				NSArray * components = [documentTextContent componentsSeparatedByString:startNodeTextContent];
+				// yay it worked!
+				if (components.count == 2) {
+					return [NSString stringWithFormat:@"%@ %@", startNodeTextContent, components[1]];
+				}
+
+				// nope!
+				else {
+					return documentTextContent;
+				}
+			}
+		}
+
+		// The last chapter
+		else {
+			HTMLDocument *document = [HTMLDocument documentWithString:contentString];
+			HTMLNode *node = [document firstNodeMatchingSelector:[NSString stringWithFormat:@"#%@", currentChapterXMLIDString]];
+
+			NSString *documentTextContent = [document textContent];
+			NSString *startNodeTextContent = [node textContent];
+
+			NSArray * components = [documentTextContent componentsSeparatedByString:startNodeTextContent];
+			// yay it worked!
+			if (components.count == 2) {
+				return [NSString stringWithFormat:@"%@ %@", startNodeTextContent, components[1]];
+			}
+
+			// nope!
+			else {
+				return documentTextContent;
+			}
+		}
 	}
 
-	if (chapterIndex < self.chapterListings.count - 1) { // Iterate until the beginning of the next chapter.
-		NSString *nextFullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex + 1] path]];
-		while (![nextFullContentPath hasPrefix:currentContentPath]) {
-			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
+	// Epub using files to indicate _starts_ of chapters.
+	else {
 
+		NSInteger currentSpineIndex = 0;
+		NSString *currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+		while (![fullContentPath hasPrefix:currentContentPath]) {
 			currentSpineIndex++;
 			currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
 		}
-	} else { // Last chapter so iterate until the end.
-		while (currentSpineIndex < self.epubController.contentModel.spine.count) {
-			strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
 
-			currentSpineIndex++;
-			if (currentSpineIndex == self.epubController.contentModel.spine.count) {
-				break;
+		if (chapterIndex < self.chapterListings.count - 1) { // Iterate until the beginning of the next chapter.
+			NSString *nextFullContentPath = [self.epubController.epubContentBaseURL.path stringByAppendingPathComponent:[(EpubChapterListing *)self.chapterListings[chapterIndex + 1] path]];
+			while (![nextFullContentPath hasPrefix:currentContentPath]) {
+				strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
+
+				currentSpineIndex++;
+				currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
 			}
-			currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+		} else { // Last chapter so iterate until the end.
+			while (currentSpineIndex < self.epubController.contentModel.spine.count) {
+				strippedString = [NSString stringWithFormat:@"%@ %@", strippedString, [self.class strippedStringForPath:currentContentPath]];
+
+				currentSpineIndex++;
+				if (currentSpineIndex == self.epubController.contentModel.spine.count) {
+					break;
+				}
+				currentContentPath = [self fullPathForSpineIndex:currentSpineIndex];
+			}
 		}
 	}
 
